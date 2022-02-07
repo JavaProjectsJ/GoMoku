@@ -10,10 +10,20 @@ public class Board {
 	 * Color Start
 	 */
 	public static final String RESET = "\u001B[0m";
+	/*
+	 * Print Players
+	 * Player1 colour is black background
+	 * Player2 colour is white background
+	 */
 	// public static final String PLAYER1 = "\u001B[30m";
 	// public static final String PLAYER2 = "\u001B[37m";
 	public static final String PLAYER1 = "\033[40m";
 	public static final String PLAYER2 = "\033[47m";
+	/*
+	 * Print board
+	 * 1st colour is green
+	 * 2nd colour is green with transparency
+	 */
 	public static final String BOARD = "\u001B[42m";
 	public static final String BOARD2 = "\033[0;102m";
 
@@ -21,6 +31,9 @@ public class Board {
 		goMokuBoard();
 	}
 
+	/*
+	 * Print Header.
+	 */
 	public static void printHeader(int option) {
 		printABC(option);
 		System.out.println();
@@ -31,6 +44,9 @@ public class Board {
 		System.out.println();
 	}
 
+	/*
+	 * Print Footer.
+	 */
 	public static void printFooter(int option) {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 				"T", "U", "V", "W", "X", "Y", "Z" };
@@ -41,6 +57,9 @@ public class Board {
 		printABC(option);
 	}
 
+	/*
+	 * Print alphabet in the top of the columns.
+	 */
 	public static void printABC(int option) {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 				"T", "U", "V", "W", "X", "Y", "Z" };
@@ -52,6 +71,13 @@ public class Board {
 
 	}
 
+	/*
+	 * Print the GoMoku Board:
+	 * As we have two Board sizes we will need to tell which is the size we would
+	 * like to use.
+	 * In the past GoMoku was played using a 19x19 board, nowadays is being played
+	 * with a 15x15 board.
+	 */
 	@SuppressWarnings("resource")
 	public static void goMokuBoard() {
 		String spacing = "  ";
