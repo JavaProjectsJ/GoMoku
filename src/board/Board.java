@@ -75,12 +75,14 @@ public class Board {
 	 */
 	@SuppressWarnings("resource")
 	public static void goMokuBoard() {
-		String spacing = "  ";
-		int option;
+		Scanner keyboard = new Scanner(System.in);
+
+		int option = keyboard.nextInt();
+
 		String[] nmb = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16",
 				"17", "18", "19" };
-		Scanner keyboard = new Scanner(System.in);
-		option = keyboard.nextInt();
+
+		String spacing = "  ";
 
 		printHeader(option);
 
