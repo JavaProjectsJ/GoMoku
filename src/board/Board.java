@@ -64,7 +64,6 @@ public class Board {
 		for (int j = 0; j < option; j++) {
 			System.out.print(" " + abc[j]);
 		}
-
 	}
 
 	/*
