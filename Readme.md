@@ -27,6 +27,6 @@ be played as a paper-and-pencil game. The game is known in several countries und
 
 
 
-#### Authors:
+### Authors:
 
-- ##### [jmpfbmx](https://github.com/jmpfbmx)
+- #### [jmpfbmx](https://github.com/jmpfbmx)
