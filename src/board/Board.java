@@ -15,8 +15,6 @@ public class Board {
 	 * Player1 colour is black background
 	 * Player2 colour is white background
 	 */
-	// public static final String PLAYER1 = "\u001B[30m";
-	// public static final String PLAYER2 = "\u001B[37m";
 	public static final String PLAYER1 = "\033[40m";
 	public static final String PLAYER2 = "\033[47m";
 	/*
