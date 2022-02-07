@@ -46,8 +46,6 @@ public class Board {
 	 * Print Footer.
 	 */
 	public static void printFooter(int option) {
-		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-				"T", "U", "V", "W", "X", "Y", "Z" };
 		System.out.printf("   ");
 		for (int i = 0; i < option; i++) {
 			System.out.print("¯¯");
