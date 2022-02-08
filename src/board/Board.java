@@ -35,13 +35,14 @@ public class Board {
 	 * Print Header.
 	 */
 	public static void printHeader(int option) {
+		System.out.print(BORDER);
 		printABC(option);
 		System.out.println();
 		System.out.printf("   ");
 		for (int i = 0; i < option; i++) {
-			System.out.printf("__");
+			System.out.printf("  ");
 		}
-		System.out.printf("   ");
+		System.out.printf("     ");
 		System.out.println();
 	}
 
@@ -49,12 +50,14 @@ public class Board {
 	 * Print Footer.
 	 */
 	public static void printFooter(int option) {
+		System.out.print(BORDER);
 		System.out.printf("   ");
 		for (int i = 0; i < option; i++) {
-			System.out.print("¯¯");
+			System.out.print("  ");
 		}
-		System.out.printf("   ");
+		System.out.printf("     ");
 		printABC(option);
+		System.out.println();
 	}
 
 	/*
@@ -64,11 +67,11 @@ public class Board {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 				"T", "U", "V", "W", "X", "Y", "Z" };
 		System.out.println();
-		System.out.printf("   ");
+		System.out.printf("    ");
 		for (int j = 0; j < option; j++) {
 			System.out.print(" " + abc[j]);
 		}
-		System.out.printf("   ");
+		System.out.printf("    ");
 	}
 
 	/*
@@ -101,7 +104,8 @@ public class Board {
 
 		if (option == 19) {
 			for (int i = 0; i < board; i++) {
-				System.out.printf(nmb[i] + "|");
+				System.out.print(BORDER);
+				System.out.printf(" " + nmb[i] + " ");
 				for (int j = 0; j < board; j++) {
 					if ((i + j) % 2 == 0) {
 						System.out.printf(BOARD + spacing);
@@ -109,14 +113,15 @@ public class Board {
 						System.out.printf(BOARD2 + spacing);
 					}
 					if (j == 18) {
-						System.out.printf(RESET + "|" + nmb[i]);
+						System.out.printf(RESET + BORDER + " " + nmb[i] + " ");
 					}
 				}
 				System.out.printf(RESET + "\n");
 			}
 		} else if (option == 15) {
 			for (int i = 0; i < board; i++) {
-				System.out.printf(nmb[i] + "|");
+				System.out.print(BORDER);
+				System.out.printf(" " + nmb[i] + " ");
 				for (int j = 0; j < board; j++) {
 					if ((i + j) % 2 == 0) {
 						System.out.printf(BOARD + spacing);
@@ -124,7 +129,7 @@ public class Board {
 						System.out.printf(BOARD2 + spacing);
 					}
 					if (j == 14) {
-						System.out.printf(RESET + "|" + nmb[i]);
+						System.out.printf(RESET + BORDER + " " + nmb[i] + " ");
 					}
 				}
 				System.out.printf(RESET + "\n");
