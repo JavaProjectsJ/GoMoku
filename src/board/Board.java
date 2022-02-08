@@ -21,7 +21,7 @@ public class Board {
 	 * Print board
 	 * 1st colour is green
 	 * 2nd colour is green with transparency
-	 * 3rd colour is orange used for the border
+	 * 3rd colour is gray used for the border
 	 */
 	public static final String BOARD = "\u001B[42m";
 	public static final String BOARD2 = "\033[0;102m";
