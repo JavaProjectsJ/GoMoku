@@ -61,7 +61,7 @@ public class Board {
 	}
 
 	/*
-	 * Print alphabet in the top of the columns.
+	 * Print alphabet in the top and bottom border.
 	 */
 	public static void printABC(int option) {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
