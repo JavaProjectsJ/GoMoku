@@ -41,6 +41,7 @@ public class Board {
 		for (int i = 0; i < option; i++) {
 			System.out.printf("__");
 		}
+		System.out.printf("   ");
 		System.out.println();
 	}
 
@@ -52,6 +53,7 @@ public class Board {
 		for (int i = 0; i < option; i++) {
 			System.out.print("¯¯");
 		}
+		System.out.printf("   ");
 		printABC(option);
 	}
 
@@ -66,6 +68,7 @@ public class Board {
 		for (int j = 0; j < option; j++) {
 			System.out.print(" " + abc[j]);
 		}
+		System.out.printf("   ");
 	}
 
 	/*
