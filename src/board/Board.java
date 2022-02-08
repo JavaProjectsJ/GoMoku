@@ -85,6 +85,9 @@ public class Board {
 	public static void goMokuBoard() {
 		Scanner keyboard = new Scanner(System.in);
 
+		System.out.printf("Choose your Go Moku Board:\n" + "\t15.- New board\n" + "\t19.- Traditional board\n"
+				+ "Choose your option: ");
+
 		int option = keyboard.nextInt();
 
 		int board = 0;
