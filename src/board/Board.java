@@ -81,17 +81,25 @@ public class Board {
 
 		int option = keyboard.nextInt();
 
+		int board = 0;
+
 		String[] nmb = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16",
 				"17", "18", "19" };
 
 		String spacing = "  ";
 
+		if (option == 19) {
+			board = 19;
+		} else if (option == 15) {
+			board = 15;
+		}
+
 		printHeader(option);
 
 		if (option == 19) {
-			for (int i = 0; i < 19; i++) {
+			for (int i = 0; i < board; i++) {
 				System.out.printf(nmb[i] + "|");
-				for (int j = 0; j < 19; j++) {
+				for (int j = 0; j < board; j++) {
 					if ((i + j) % 2 == 0) {
 						System.out.printf(BOARD + spacing);
 					} else {
@@ -104,9 +112,9 @@ public class Board {
 				System.out.printf(RESET + "\n");
 			}
 		} else if (option == 15) {
-			for (int i = 0; i < 15; i++) {
+			for (int i = 0; i < board; i++) {
 				System.out.printf(nmb[i] + "|");
-				for (int j = 0; j < 15; j++) {
+				for (int j = 0; j < board; j++) {
 					if ((i + j) % 2 == 0) {
 						System.out.printf(BOARD + spacing);
 					} else {
