@@ -35,7 +35,6 @@ public class Board {
 	 * Print Header.
 	 */
 	public static void printHeader(int option) {
-		System.out.print(BORDER);
 		printABC(option);
 		System.out.println();
 		System.out.printf("   ");
@@ -50,7 +49,6 @@ public class Board {
 	 * Print Footer.
 	 */
 	public static void printFooter(int option) {
-		System.out.print(BORDER);
 		System.out.printf("   ");
 		for (int i = 0; i < option; i++) {
 			System.out.print("  ");
@@ -67,7 +65,7 @@ public class Board {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 				"T", "U", "V", "W", "X", "Y", "Z" };
 		System.out.println();
-		System.out.printf("    ");
+		System.out.printf("   ");
 		for (int j = 0; j < option; j++) {
 			System.out.print(" " + abc[j]);
 		}
@@ -83,6 +81,8 @@ public class Board {
 	 */
 	@SuppressWarnings("resource")
 	public static void goMokuBoard() {
+		int[][][] size = { {} };
+
 		Scanner keyboard = new Scanner(System.in);
 
 		System.out.printf("Choose your Go Moku Board:\n" + "\t15.- New board\n" + "\t19.- Traditional board\n"
@@ -95,47 +95,47 @@ public class Board {
 		String[] nmb = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16",
 				"17", "18", "19" };
 
-		String spacing = "  ";
+		String dot = " ·";
 
 		if (option == 19) {
 			board = 19;
+			size = new int[board][board][2];
 		} else if (option == 15) {
 			board = 15;
+			size = new int[board][board][2];
 		}
 
 		printHeader(option);
 
 		if (option == 19) {
-			for (int i = 0; i < board; i++) {
-				System.out.print(BORDER);
-				System.out.printf(" " + nmb[i] + " ");
-				for (int j = 0; j < board; j++) {
+			for (int i = 0; i < size.length; i++) {
+				System.out.printf(" " + nmb[i]);
+				for (int j = 0; j < size.length; j++) {
 					if ((i + j) % 2 == 0) {
-						System.out.printf(BOARD + spacing);
+						System.out.printf(dot);
 					} else {
-						System.out.printf(BOARD2 + spacing);
+						System.out.printf(dot);
 					}
 					if (j == 18) {
-						System.out.printf(RESET + BORDER + " " + nmb[i] + " ");
+						System.out.printf(" " + nmb[i] + " ");
 					}
 				}
-				System.out.printf(RESET + "\n");
+				System.out.printf("\n");
 			}
 		} else if (option == 15) {
-			for (int i = 0; i < board; i++) {
-				System.out.print(BORDER);
+			for (int i = 0; i < size.length; i++) {
 				System.out.printf(" " + nmb[i] + " ");
-				for (int j = 0; j < board; j++) {
+				for (int j = 0; j < size.length; j++) {
 					if ((i + j) % 2 == 0) {
-						System.out.printf(BOARD + spacing);
+						System.out.printf(dot);
 					} else {
-						System.out.printf(BOARD2 + spacing);
+						System.out.printf(dot);
 					}
 					if (j == 14) {
-						System.out.printf(RESET + BORDER + " " + nmb[i] + " ");
+						System.out.printf(" " + nmb[i] + " ");
 					}
 				}
-				System.out.printf(RESET + "\n");
+				System.out.printf("\n");
 			}
 		} else {
 			System.out.println("Invalid board size");
