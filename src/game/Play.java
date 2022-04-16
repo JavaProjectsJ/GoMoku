@@ -74,13 +74,14 @@ public class Play {
 		ShowResult();
 	}
 
-	public static void validate(int[] position, Board board){			 
+	public static void validate(int[] position, Board board) {
 		/* Validate if position is in the board size */
 		if (position[0] < 0 || position[0] > 14 || position[1] < 0 || position[1] > 14) {
 			System.out.println("The position is not in the board size");
-		/* Validate if the position is empty */	
+			/* Validate if the position is empty */
 		} else if (board.getPiece(position[0], position[1]) != 0) {
-			System.out.println("The position is not empty");	
+			System.out.println("The position is not empty");
+		}
 	}
 
 	public static void validateHorizontalToWin(Board board) {
@@ -88,8 +89,7 @@ public class Play {
 		boolean win = false;
 		for (int i = 0; i < board.getTableSize(); i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
-				if (board.getPiece(i, j) == board.getPiece(i, j + 1)
-						&& board.getPiece(i, j) == board.getPiece(i, j + 2)
+				if (board.getPiece(i, j) == board.getPiece(i, j + 1) && board.getPiece(i, j) == board.getPiece(i, j + 2)
 						&& board.getPiece(i, j) == board.getPiece(i, j + 3)
 						&& board.getPiece(i, j) == board.getPiece(i, j + 4)) {
 					win = true;
@@ -97,14 +97,13 @@ public class Play {
 			}
 		}
 	}
-	
+
 	public static void validateVerticalToWin(Board board) {
 		/* Validate if in the vertical line are 5 pieces */
 		boolean win = false;
 		for (int i = 0; i < board.getTableSize() - 4; i++) {
 			for (int j = 0; j < board.getTableSize(); j++) {
-				if (board.getPiece(j, i) == board.getPiece(j + 1, i)
-						&& board.getPiece(j, i) == board.getPiece(j + 2, i)
+				if (board.getPiece(j, i) == board.getPiece(j + 1, i) && board.getPiece(j, i) == board.getPiece(j + 2, i)
 						&& board.getPiece(j, i) == board.getPiece(j + 3, i)
 						&& board.getPiece(j, i) == board.getPiece(j + 4, i)) {
 					win = true;
@@ -116,7 +115,7 @@ public class Play {
 	public static void validateDiagonalToWin(Board board) {
 		/* Validate if in the diagonal line are 5 pieces */
 		boolean win = false;
-		for (int i = 0; i < board.getTableSize() -4; i++) {
+		for (int i = 0; i < board.getTableSize() - 4; i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
 				if (board.getPiece(i, j) == board.getPiece(i + 1, j + 1)
 						&& board.getPiece(i, j) == board.getPiece(i + 2, j + 2)
