@@ -33,9 +33,7 @@ public class Play {
 		boolean playerTurn = false;
 		boolean game = true;
 		Board board = new Board(option);
-		// Crear el tablero
-		// board.createBoard(option);
-		// Crear los jugadores
+		/* Create the players */
 		System.out.println("Which is your name player 1?");
 		String player1_name = keyboard.nextLine();
 		System.out.println("Which is your name player 2?");
@@ -44,13 +42,9 @@ public class Play {
 		Player player1 = new Player(player1_name, 1);
 		Player player2 = new Player(player2_name, 2);
 
-		// System.out.println(player1.getName());
-		// System.out.println(player1.getSymbolPiece());
-		// System.out.println(player2.getName());
-		// System.out.println(player2.getSymbolPiece());
-
 		clearConsole();
 
+		/* Create the board */
 		board.showBoard();
 		// DENTRO DE UN WHILE MIENTRAS EL JUEGO CONTINUE
 		// Primer movimiento del primer jugador
@@ -62,18 +56,15 @@ public class Play {
 			if (!playerTurn) {
 				clearConsole();
 				System.out.println("GIVE ME THE COORDINATES " + player1.getName());
-				String coordinates = keyboard.nextLine(); // a7b12;
-				int x = coordinates.charAt(0) - 1;
-				int y = coordinates.charAt(2) - 1;
-				board.insertPiece(x, y, player1.symbolPiece);
+				int[] position = coordinates();
+				board.insertPiece(position[0], position[1], player1.symbolPiece);
 				board.showBoard();
 				playerTurn = true;
 			} else if (playerTurn) {
 				clearConsole();
 				System.out.println("GIVE ME THE DATA " + player2.getName());
-				int x = keyboard.nextInt() - 1;
-				int y = keyboard.nextInt() - 1;
-				board.insertPiece(x, y, player2.symbolPiece);
+				int[] position = coordinates();
+				board.insertPiece(position[0], position[1], player2.symbolPiece);
 				board.showBoard();
 				playerTurn = false;
 			}
@@ -84,6 +75,17 @@ public class Play {
 	}
 
 	public static void validate(int option) {
+
+	}
+
+	public static int[] coordinates() {
+		Scanner keyboard = new Scanner(System.in);
+		String coordinates = keyboard.nextLine();
+		String[] coordinates_split = coordinates.split(",");
+		int[] positions = new int[2];
+		positions[0] = Integer.parseInt(coordinates_split[0]) - 1;
+		positions[1] = Integer.parseInt(coordinates_split[1]) - 1;
+		return positions;
 	}
 
 	public final static void clearConsole() {

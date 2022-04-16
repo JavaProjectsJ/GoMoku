@@ -4,6 +4,11 @@
 package game;
 
 public class Board {
+	public static final String BLUE = "\u001B[34m";
+	public static final String GREEN = "\u001B[32m";
+	public static final String RESET = "\u001B[0m";
+	public static final String YELLOW = "\u001B[33m";
+
 	private int[][] size = { {} };
 
 	private int tableSize;
@@ -85,9 +90,9 @@ public class Board {
 				if (size[i][j] == 0) {
 					System.out.printf(dot);
 				} else if (size[i][j] == 1) {
-					System.out.print(" X");
+					System.out.print(YELLOW + " X" + RESET);
 				} else {
-					System.out.print(" O");
+					System.out.print(BLUE + " O" + RESET);
 				}
 
 				if (j == tableSize - 1) {
