@@ -74,8 +74,14 @@ public class Play {
 		ShowResult();
 	}
 
-	public static void validate(int option) {
-
+	public static void validate(int[] position) {
+		/* Validate if position is in the board size 
+		 * and if the position is empty */
+		if (position[0] < 0 || position[0] > board.getTableSize || position[1] < 0 || position[1] > board.getTableSize) {
+			System.out.println("The position is not valid");
+		} else if (board.getPiece(position[0], position[1]) != 0) {
+			System.out.println("The position is not empty");
+		}
 	}
 
 	public static int[] coordinates() {
