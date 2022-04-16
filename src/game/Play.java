@@ -3,6 +3,8 @@ package game;
 import java.util.Scanner;
 
 public class Play {
+	static boolean game = true;
+	static boolean playerTurn = true;
 
 	public static void main(String[] args) {
 		// PRESENTAR EL JUEGO Y OPCIONES //
@@ -29,9 +31,8 @@ public class Play {
 	}
 
 	public static void NewGame(int option) {
+		int[] position;
 		Scanner keyboard = new Scanner(System.in);
-		boolean playerTurn = false;
-		boolean game = true;
 		Board board = new Board(option);
 		/* Create the players */
 		System.out.println("Which is your name player 1?");
@@ -53,28 +54,29 @@ public class Play {
 		// Y COMPROBARÁ SI LOS VALORES DADOS SON CORRECTOS O NO
 		// TAMBIEN HACER UNA COMPROBACIÓN POR SI LA FICHA NO SEA = 0
 		while (game) {
-			if (!playerTurn) {
+			if (playerTurn) {
 				clearConsole();
 				System.out.println("GIVE ME THE COORDINATES " + player1.getName());
-				int[] position = coordinates();
+				position = coordinates();
+				validatePosition(position, board);
 				board.insertPiece(position[0], position[1], player1.symbolPiece);
+				validateWin(board);
 				board.showBoard();
-				playerTurn = true;
-			} else if (playerTurn) {
-				clearConsole();
-				System.out.println("GIVE ME THE DATA " + player2.getName());
-				int[] position = coordinates();
+			}
+			clearConsole();
+			if (playerTurn) {
+				System.out.println("GIVE ME THE COORDINATES " + player2.getName());
+				position = coordinates();
+				validatePosition(position, board);
 				board.insertPiece(position[0], position[1], player2.symbolPiece);
 				board.showBoard();
-				playerTurn = false;
 			}
 		}
 		System.out.println("GAME OVER");
-		FinishGame();
 		ShowResult();
 	}
 
-	public static void validate(int[] position, Board board) {
+	public static void validatePosition(int[] position, Board board) {
 		/* Validate if position is in the board size */
 		if (position[0] < 0 || position[0] > 14 || position[1] < 0 || position[1] > 14) {
 			System.out.println("The position is not in the board size");
@@ -84,15 +86,23 @@ public class Play {
 		}
 	}
 
+	public static void validateWin(Board board) {
+		validateHorizontalToWin(board);
+		validateVerticalToWin(board);
+		validateDiagonalToWin(board);
+	}
+
 	public static void validateHorizontalToWin(Board board) {
 		/* Validate if in the horizontal line are 5 pieces */
-		boolean win = false;
 		for (int i = 0; i < board.getTableSize(); i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
-				if (board.getPiece(i, j) == board.getPiece(i, j + 1) && board.getPiece(i, j) == board.getPiece(i, j + 2)
-						&& board.getPiece(i, j) == board.getPiece(i, j + 3)
-						&& board.getPiece(i, j) == board.getPiece(i, j + 4)) {
-					win = true;
+				if (board.getPiece(i, j) != 0) {
+					if (board.getPiece(i, j) == board.getPiece(i, j + 1)
+							&& board.getPiece(i, j) == board.getPiece(i, j + 2)
+							&& board.getPiece(i, j) == board.getPiece(i, j + 3)
+							&& board.getPiece(i, j) == board.getPiece(i, j + 4)) {
+						finishGame();
+					}
 				}
 			}
 		}
@@ -100,13 +110,15 @@ public class Play {
 
 	public static void validateVerticalToWin(Board board) {
 		/* Validate if in the vertical line are 5 pieces */
-		boolean win = false;
-		for (int i = 0; i < board.getTableSize() - 4; i++) {
-			for (int j = 0; j < board.getTableSize(); j++) {
-				if (board.getPiece(j, i) == board.getPiece(j + 1, i) && board.getPiece(j, i) == board.getPiece(j + 2, i)
-						&& board.getPiece(j, i) == board.getPiece(j + 3, i)
-						&& board.getPiece(j, i) == board.getPiece(j + 4, i)) {
-					win = true;
+		for (int i = 0; i < board.getTableSize(); i++) {
+			for (int j = 0; j < board.getTableSize() - 4; j++) {
+				if (board.getPiece(j, i) != 0) {
+					if (board.getPiece(j, i) == board.getPiece(j + 1, i)
+							&& board.getPiece(j, i) == board.getPiece(j + 2, i)
+							&& board.getPiece(j, i) == board.getPiece(j + 3, i)
+							&& board.getPiece(j, i) == board.getPiece(j + 4, i)) {
+						finishGame();
+					}
 				}
 			}
 		}
@@ -114,14 +126,15 @@ public class Play {
 
 	public static void validateDiagonalToWin(Board board) {
 		/* Validate if in the diagonal line are 5 pieces */
-		boolean win = false;
 		for (int i = 0; i < board.getTableSize() - 4; i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
-				if (board.getPiece(i, j) == board.getPiece(i + 1, j + 1)
-						&& board.getPiece(i, j) == board.getPiece(i + 2, j + 2)
-						&& board.getPiece(i, j) == board.getPiece(i + 3, j + 3)
-						&& board.getPiece(i, j) == board.getPiece(i + 4, j + 4)) {
-					win = true;
+				if (board.getPiece(i, j) != 0) {
+					if (board.getPiece(i, j) == board.getPiece(i + 1, j + 1)
+							&& board.getPiece(i, j) == board.getPiece(i + 2, j + 2)
+							&& board.getPiece(i, j) == board.getPiece(i + 3, j + 3)
+							&& board.getPiece(i, j) == board.getPiece(i + 4, j + 4)) {
+						finishGame();
+					}
 				}
 			}
 		}
@@ -141,7 +154,9 @@ public class Play {
 		System.out.println();
 	}
 
-	public static void FinishGame() {
+	public static void finishGame() {
+		playerTurn = false;
+		game = false;
 	}
 
 	public static void ShowResult() {
