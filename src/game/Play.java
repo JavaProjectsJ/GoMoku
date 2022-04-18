@@ -24,7 +24,7 @@ public class Play {
 						+ "                                                                                                                 \n");
 		Scanner keyboard = new Scanner(System.in);
 		System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
-				+ "\t2.- Traditional board (19x19)\n" + "Choose your option: ");
+				+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
 
 		int option = keyboard.nextInt();
 
@@ -34,6 +34,9 @@ public class Play {
 			break;
 		case 2:
 			newGame(19);
+			break;
+		case 3:
+			System.out.println("Stopping the game execution");
 			break;
 		default:
 			System.out.println("Invalid option");
