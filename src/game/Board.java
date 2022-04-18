@@ -37,7 +37,6 @@ public class Board {
 	}
 
 	public void insertPiece(int x, int y, int playerPiece) {
-		// TODO: Controlar que el playerPieze sea valido
 		this.size[x][y] = playerPiece;
 	}
 
