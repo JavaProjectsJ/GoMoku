@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Play {
 	static boolean game = true;
 	static boolean playerTurn = true;
+	static boolean possibleMove = false;
 
 	public static void main(String[] args) {
 		// PRESENTAR EL JUEGO Y OPCIONES //
@@ -32,6 +33,7 @@ public class Play {
 
 	public static void NewGame(int option) {
 		int[] position;
+		boolean exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
 		/* Create the players */
@@ -56,19 +58,37 @@ public class Play {
 		while (game) {
 			if (playerTurn) {
 				clearConsole();
-				System.out.println("GIVE ME THE COORDINATES " + player1.getName());
-				position = coordinates();
-				validatePosition(position, board);
-				board.insertPiece(position[0], position[1], player1.symbolPiece);
+				do {
+					try {
+						System.out.println("GIVE ME THE COORDINATES " + player1.getName());
+						position = coordinates();
+						possibleMove = validatePosition(position, board);
+						board.insertPiece(position[0], position[1], player1.symbolPiece);
+						exit = true;
+					} catch (Exception e) {
+						keyboard.reset();
+						System.out.println(e.getMessage());
+						exit = false;
+					}
+				} while (!exit);
 				validateWin(board);
 				board.showBoard();
 			}
 			clearConsole();
 			if (playerTurn) {
-				System.out.println("GIVE ME THE COORDINATES " + player2.getName());
-				position = coordinates();
-				validatePosition(position, board);
-				board.insertPiece(position[0], position[1], player2.symbolPiece);
+				do {
+					try {
+						System.out.println("GIVE ME THE COORDINATES " + player2.getName());
+						position = coordinates();
+						possibleMove = validatePosition(position, board);
+						board.insertPiece(position[0], position[1], player2.symbolPiece);
+						exit = true;
+					} catch (Exception e) {
+						keyboard.reset();
+						System.out.println(e.getMessage());
+						exit = false;
+					}
+				} while (!exit);
 				board.showBoard();
 			}
 		}
@@ -76,14 +96,20 @@ public class Play {
 		ShowResult();
 	}
 
-	public static void validatePosition(int[] position, Board board) {
+	public static boolean validatePosition(int[] position, Board board) throws Exception {
+		possibleMove = false;
 		/* Validate if position is in the board size */
 		if (position[0] < 0 || position[0] > 14 || position[1] < 0 || position[1] > 14) {
 			System.out.println("The position is not in the board size");
+			throw new Exception("Try again");
 			/* Validate if the position is empty */
 		} else if (board.getPiece(position[0], position[1]) != 0) {
 			System.out.println("The position is not empty");
+			throw new Exception("Try again");
+		} else {
+			possibleMove = true;
 		}
+		return possibleMove;
 	}
 
 	public static void validateWin(Board board) {
