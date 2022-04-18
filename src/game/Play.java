@@ -28,10 +28,10 @@ public class Play {
 
 		int option = keyboard.nextInt();
 
-		NewGame(option);
+		newGame(option);
 	}
 
-	public static void NewGame(int option) {
+	public static void newGame(int option) {
 		int[] position;
 		boolean exit = false;
 		Scanner keyboard = new Scanner(System.in);
