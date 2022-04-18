@@ -90,6 +90,7 @@ public class Play {
 		validateHorizontalToWin(board);
 		validateVerticalToWin(board);
 		validateDiagonalToWin(board);
+		validateReversedDiagonalToWin(board);
 	}
 
 	public static void validateHorizontalToWin(Board board) {
@@ -126,6 +127,22 @@ public class Play {
 
 	public static void validateDiagonalToWin(Board board) {
 		/* Validate if in the diagonal line are 5 pieces */
+		for (int i = 0; i < board.getTableSize() - 4; i++) {
+			for (int j = 0; j < board.getTableSize() - 4; j++) {
+				if (board.getPiece(i, j) != 0) {
+					if (board.getPiece(i, j) == board.getPiece(i + 1, j + 1)
+							&& board.getPiece(i, j) == board.getPiece(i + 2, j + 2)
+							&& board.getPiece(i, j) == board.getPiece(i + 3, j + 3)
+							&& board.getPiece(i, j) == board.getPiece(i + 4, j + 4)) {
+						finishGame();
+					}
+				}
+			}
+		}
+	}
+
+	public static void validateReversedDiagonalToWin(Board board) {
+		/* TODO: Validate if in the reversed diagonal line are 5 pieces */
 		for (int i = 0; i < board.getTableSize() - 4; i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
 				if (board.getPiece(i, j) != 0) {
