@@ -14,6 +14,7 @@ public class Play {
 		// ESPERAR 3 SEG
 		// BORRAR PRESENTACION
 		// MOSTRAR OPCIONES
+		int option = 0;
 		System.out.println(
 				" ██████╗  ██████╗ ███╗   ███╗ ██████╗ ██╗  ██╗██╗   ██╗    ██████╗ ██╗   ██╗         ██╗ ██████╗ ███████╗███████╗\n"
 						+ "██╔════╝ ██╔═══██╗████╗ ████║██╔═══██╗██║ ██╔╝██║   ██║    ██╔══██╗╚██╗ ██╔╝         ██║██╔═══██╗██╔════╝██╔════╝\n"
@@ -23,25 +24,27 @@ public class Play {
 						+ " ╚═════╝  ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝     ╚═════╝    ╚═╝        ╚════╝  ╚═════╝ ╚══════╝╚══════╝\n"
 						+ "                                                                                                                 \n");
 		Scanner keyboard = new Scanner(System.in);
-		System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
-				+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
 
-		int option = keyboard.nextInt();
-
-		switch (option) {
-		case 1:
-			newGame(15);
-			break;
-		case 2:
-			newGame(19);
-			break;
-		case 3:
-			System.out.println("Stopping the game execution");
-			break;
-		default:
-			System.out.println("Invalid option");
-			break;
-		}
+		do {
+			System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
+					+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
+			option = keyboard.nextInt();
+			System.out.println();
+			switch (option) {
+			case 1:
+				newGame(15);
+				break;
+			case 2:
+				newGame(19);
+				break;
+			case 3:
+				System.out.println("Stopping the game execution");
+				break;
+			default:
+				System.out.println("Invalid option\nTry it again!\n");
+				break;
+			}
+		} while (option != 3);
 	}
 
 	public static void newGame(int option) {
