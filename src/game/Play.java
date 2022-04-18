@@ -60,7 +60,7 @@ public class Play {
 				clearConsole();
 				do {
 					try {
-						System.out.println("GIVE ME THE COORDINATES " + player1.getName());
+						System.out.println("Insert the coordinates " + player1.getName());
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
 						board.insertPiece(position[0], position[1], player1.symbolPiece);
@@ -78,7 +78,7 @@ public class Play {
 			if (playerTurn) {
 				do {
 					try {
-						System.out.println("GIVE ME THE COORDINATES " + player2.getName());
+						System.out.println("Insert the coordinates " + player2.getName());
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
 						board.insertPiece(position[0], position[1], player2.symbolPiece);
