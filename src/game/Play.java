@@ -89,7 +89,7 @@ public class Play {
 			}
 		}
 		System.out.println("GAME OVER");
-		ShowResult();
+		showResult();
 	}
 
 	public static boolean validatePosition(int[] position, Board board) throws Exception {
@@ -198,6 +198,6 @@ public class Play {
 		game = false;
 	}
 
-	public static void ShowResult() {
+	public static void showResult() {
 	}
 }
