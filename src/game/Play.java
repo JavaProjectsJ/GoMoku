@@ -49,12 +49,8 @@ public class Play {
 
 		/* Create the board */
 		board.showBoard();
-		// DENTRO DE UN WHILE MIENTRAS EL JUEGO CONTINUE
-		// Primer movimiento del primer jugador
 
-		// HACER FUNCION VALIDATE LA CUAL VA A TENER UN TRY & CATCH
-		// Y COMPROBARÁ SI LOS VALORES DADOS SON CORRECTOS O NO
-		// TAMBIEN HACER UNA COMPROBACIÓN POR SI LA FICHA NO SEA = 0
+		/* Start the game */
 		while (game) {
 			if (playerTurn) {
 				clearConsole();
