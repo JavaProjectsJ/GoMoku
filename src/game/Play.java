@@ -88,7 +88,7 @@ public class Play {
 				board.showBoard();
 			}
 		}
-		System.out.println("GAME OVER");
+		System.out.println("Game over");
 		showResult();
 	}
 
