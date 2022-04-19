@@ -102,9 +102,15 @@ public class Play {
 		String player1_name = keyboard.nextLine();
 		System.out.println("Which is your name player 2?");
 		String player2_name = keyboard.nextLine();
+		/* String name = null; */
 
-		Player player1 = new Player(player1_name, 1);
-		Player player2 = new Player(player2_name, 2);
+		Player player1 = new Human(player1_name, 1);
+		Player player2 = new Human(player2_name, 2);
+		/*
+		 * Now we have an initial BOT just uncomment this
+		 * Player bot = new Bot(name, 2);
+		 *
+		 */
 
 		clearConsole();
 
@@ -136,9 +142,11 @@ public class Play {
 				do {
 					try {
 						System.out.println("Insert the coordinates " + player2.getName());
+						/* System.out.println("Insert the coordinates " + bot.getName()); */
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
 						board.insertPiece(position[0], position[1], player2.symbolPiece);
+						/* board.insertPiece(position[0], position[1], bot.symbolPiece); */
 						exit = true;
 					} catch (Exception e) {
 						keyboard.reset();
