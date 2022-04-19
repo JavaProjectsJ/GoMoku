@@ -92,12 +92,60 @@ public class Play {
 		menu();
 	}
 
+	@SuppressWarnings({ "unused", "resource" })
+	public static void players() {
+		int option = 0;
+		exit = false;
+		Scanner keyboard = new Scanner(System.in);
+		String name = "";
+		boolean random = false;
+		Player bot1, bot2;
+		Player human1, human2;
+		String player1_name = "";
+		String player2_name = "";
+
+		do {
+			System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n"
+					+ "\t2.- Human vs Bot\n" + "\t3.- Human vs Human\n" + "Choose your option: ");
+			option = keyboard.nextInt();
+			System.out.println();
+			switch (option) {
+			case 1:
+				bot1 = new Bot(name, 1);
+				bot2 = new Bot(name, 2);
+				exit = true;
+				break;
+			case 2:
+				System.out.println("Which is your name player 1?");
+				player1_name = keyboard.nextLine() + keyboard.nextLine();
+				human1 = new Human(player1_name, 1);
+				bot1 = new Bot(name, 2);
+				exit = true;
+				break;
+			case 3:
+				System.out.println("Which is your name player 1?");
+				player1_name = keyboard.nextLine() + keyboard.nextLine();
+				human1 = new Human(player1_name, 1);
+				System.out.println("Which is your name player 2?");
+				player2_name = keyboard.nextLine() + keyboard.nextLine();
+				human2 = new Human(player1_name, 2);
+				exit = true;
+				break;
+			default:
+				System.out.println("Invalid option\nTry it again!\n");
+				exit = false;
+				break;
+			}
+		} while (!exit);
+	}
+
 	public static void newGame(int option) {
 		int[] position;
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
 		/* Create the players */
+		players();
 		System.out.println("Which is your name player 1?");
 		String player1_name = keyboard.nextLine();
 		System.out.println("Which is your name player 2?");
