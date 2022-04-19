@@ -2,7 +2,6 @@ package game;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -99,7 +98,7 @@ public class Play {
 	public boolean randomize() {
 		System.out.println("\nWould you like to randomize who will start?");
 		boolean randomize = readChar('y');
-		if(randomize) {
+		if (randomize) {
 			return true;
 		} else {
 			return false;
@@ -114,11 +113,11 @@ public class Play {
 		boolean random = false;
 		String player1_name = "";
 		String player2_name = "";
-		int b = (int)(Math.random()*(2-1+1)+1);
-		int c = (int)(Math.random()*(2-1+1)+1);
+		int b = (int) (Math.random() * (2 - 1 + 1) + 1);
+		int c = (int) (Math.random() * (2 - 1 + 1) + 1);
 		random = randomize();
-		if(random && b == c) {
-			c = (int)(Math.random()*(2-1+1)+1);
+		if (random && b == c) {
+			c = (int) (Math.random() * (2 - 1 + 1) + 1);
 		}
 
 		do {
@@ -175,8 +174,8 @@ public class Play {
 		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
 		/* Create the players */
-		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n"
-				+ "\t2.- Human vs Bot\n" + "\t3.- Human vs Human\n" + "Choose your option: ");
+		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
+				+ "\t3.- Human vs Human\n" + "Choose your option: ");
 		int playerOption = players(keyboard.nextInt());
 
 		/* Clear the console a bit */
@@ -221,7 +220,7 @@ public class Play {
 							System.out.println("Insert the coordinates " + bot2.getName());
 						} else if (playerOption == 2) {
 							System.out.println("Insert the coordinates " + bot1.getName());
-						} else if(playerOption == 3) {
+						} else if (playerOption == 3) {
 							System.out.println("Insert the coordinates " + human2.getName());
 						}
 						position = coordinates();
@@ -230,7 +229,7 @@ public class Play {
 							board.insertPiece(position[0], position[1], bot2.symbolPiece);
 						} else if (playerOption == 2) {
 							board.insertPiece(position[0], position[1], bot1.symbolPiece);
-						} else if(playerOption == 3) {
+						} else if (playerOption == 3) {
 							board.insertPiece(position[0], position[1], human2.symbolPiece);
 						}
 						exit = true;
@@ -368,11 +367,11 @@ public class Play {
 
 	public void hallOfFame() {
 		File myObj = new File("HOF.txt");
-	    try {
+		try {
 			if (!myObj.exists()) {
 				System.out.println("File created: " + myObj.getName());
 				myObj.createNewFile();
-	        }
+			}
 
 			/*
 			 * Let's read the file
@@ -382,24 +381,24 @@ public class Play {
 			while (fReader.hasNextLine()) {
 				String data = fReader.nextLine();
 				System.out.println(" - " + data);
-	        }
-	        fReader.close();
-	        /*
-	         * Let's write the file
-	         * First value specify the file that is going to be written
-	         * Second value specify that I want to leave the info that already contains
-	         */
+			}
+			fReader.close();
+			/*
+			 * Let's write the file
+			 * First value specify the file that is going to be written
+			 * Second value specify that I want to leave the info that already contains
+			 */
 			FileWriter fWritter = new FileWriter(myObj, true);
 			BufferedWriter myWriter = new BufferedWriter(fWritter);
-	        myWriter.write(bot1.getName());
-	        myWriter.newLine();
-	        myWriter.write(bot2.getName());
-	        myWriter.newLine();
-	        myWriter.close();
-	        System.out.println("\nInformation has been successfully written to the file.");
-	    } catch (IOException e) {
-	    	System.out.println("\nFile couldn't be written!");
-	    	e.printStackTrace();
-	    }
+			myWriter.write(bot1.getName());
+			myWriter.newLine();
+			myWriter.write(bot2.getName());
+			myWriter.newLine();
+			myWriter.close();
+			System.out.println("\nInformation has been successfully written to the file.");
+		} catch (IOException e) {
+			System.out.println("\nFile couldn't be written!");
+			e.printStackTrace();
+		}
 	}
 }
