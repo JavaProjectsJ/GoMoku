@@ -91,6 +91,16 @@ public class Play {
 		menu();
 	}
 
+	public static boolean randomize() {
+		System.out.println("\nWould you like to randomize who will start?");
+		boolean randomize = readChar('y');
+		if(randomize) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	@SuppressWarnings({ "unused", "resource" })
 	public static int players(int option) {
 		exit = false;
@@ -101,10 +111,8 @@ public class Play {
 		String player2_name = "";
 		int b = (int)(Math.random()*(2-1+1)+1);
 		int c = (int)(Math.random()*(2-1+1)+1);
-		System.out.println("\nWould you like to randomize who will start?");
-		boolean randomize = readChar('y');
-		if(randomize || randomize && b == c) {
-			random = true;
+		random = randomize();
+		if(random && b == c) {
 			c = (int)(Math.random()*(2-1+1)+1);
 		}
 
