@@ -104,13 +104,30 @@ public class Play {
 		boolean random = false;
 		String player1_name = "";
 		String player2_name = "";
+		int b = (int)(Math.random()*(2-1+1)+1);
+
+		System.out.println("\nWould you like to randomize who will start?");
+		char randomize = readChar("y");
+		if(randomize == 'y') {
+			random = true;
+		}
 
 		do {
 			System.out.println();
 			switch (option) {
 			case 1:
-				bot1 = new Bot(name, 1);
-				bot2 = new Bot(name, 2);
+				if (random) {
+					if(b == 1) {
+						bot1 = new Bot(name, b);
+						bot2 = new Bot(name, b + 1);
+					} else if (b == 2) {
+						bot1 = new Bot(name, b);
+						bot2 = new Bot(name, b - 1);
+					}
+				} else {
+					bot1 = new Bot(name, 1);
+					bot2 = new Bot(name, 2);
+				}
 				exit = true;
 				break;
 			case 2:
