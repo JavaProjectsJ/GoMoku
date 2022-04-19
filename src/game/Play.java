@@ -39,19 +39,14 @@ public class Play {
 		}
 	}
 
-	public static char readChar(String validCharacters) {
+	@SuppressWarnings("resource")
+	public static boolean readChar(char affirmativeValue) {
 		Scanner keyboard = new Scanner(System.in);
-		char c;
-		boolean exit = true;
-		do {
-			c = keyboard.next().charAt(0);
-			for (int i = 0; i < validCharacters.length(); i++) {
-				if (c == validCharacters.charAt(i)) {
-					exit = false;
-				}
-			}
-		} while (exit);
-		return c;
+		char c = keyboard.next().charAt(0);
+		if (affirmativeValue == c) {
+			return true;
+		}
+		return false;
 	}
 
 	public static void menu() {
@@ -105,11 +100,12 @@ public class Play {
 		String player1_name = "";
 		String player2_name = "";
 		int b = (int)(Math.random()*(2-1+1)+1);
-
+		int c = (int)(Math.random()*(2-1+1)+1);
 		System.out.println("\nWould you like to randomize who will start?");
-		char randomize = readChar("y");
-		if(randomize == 'y') {
+		boolean randomize = readChar('y');
+		if(randomize || randomize && b == c) {
 			random = true;
+			c = (int)(Math.random()*(2-1+1)+1);
 		}
 
 		do {
@@ -117,13 +113,8 @@ public class Play {
 			switch (option) {
 			case 1:
 				if (random) {
-					if(b == 1) {
-						bot1 = new Bot(name, b);
-						bot2 = new Bot(name, b + 1);
-					} else if (b == 2) {
-						bot1 = new Bot(name, b);
-						bot2 = new Bot(name, b - 1);
-					}
+					bot1 = new Bot(name, b);
+					bot2 = new Bot(name, c);
 				} else {
 					bot1 = new Bot(name, 1);
 					bot2 = new Bot(name, 2);
@@ -133,17 +124,27 @@ public class Play {
 			case 2:
 				System.out.println("Which is your name player 1?");
 				player1_name = keyboard.nextLine();
-				human1 = new Human(player1_name, 1);
-				bot1 = new Bot(name, 2);
+				if (random) {
+					human1 = new Human(player1_name, b);
+					bot1 = new Bot(name, c);
+				} else {
+					human1 = new Human(player1_name, 1);
+					bot1 = new Bot(name, 2);
+				}
 				exit = true;
 				break;
 			case 3:
 				System.out.println("Which is your name player 1?");
 				player1_name = keyboard.nextLine();
-				human1 = new Human(player1_name, 1);
-				System.out.println("Which is your name player 2?");
+				System.out.println("\nWhich is your name player 2?");
 				player2_name = keyboard.nextLine();
-				human2 = new Human(player1_name, 2);
+				if (random) {
+					human1 = new Human(player1_name, b);
+					human2 = new Human(player1_name, c);
+				} else {
+					human1 = new Human(player1_name, 1);
+					human2 = new Human(player1_name, 2);
+				}
 				exit = true;
 				break;
 			default:
@@ -236,8 +237,8 @@ public class Play {
 
 	public static void reset() {
 		System.out.println("Would you like to play again?");
-		char valid = readChar("y");
-		if (valid == 'y') {
+		boolean valid = readChar('y');
+		if (valid) {
 			menu();
 		}
 	}
