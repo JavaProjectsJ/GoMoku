@@ -151,11 +151,11 @@ public class Play {
 		}
 		asciiArt(2);
 		showResult();
-		System.out.println("Would you like to play again?");
 		reset();
 	}
 
 	public static void reset() {
+		System.out.println("Would you like to play again?");
 		char valid = readChar("y");
 		if (valid == 'y') {
 			menu();
