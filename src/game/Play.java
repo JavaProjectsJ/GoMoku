@@ -7,6 +7,10 @@ public class Play {
 	static boolean playerTurn = true;
 	static boolean possibleMove = false;
 	static boolean exit = false;
+	static Player bot1;
+	static Player bot2;
+	static Player human1;
+	static Player human2;
 
 	public static void asciiArt(int option) {
 		switch (option) {
@@ -99,8 +103,6 @@ public class Play {
 		Scanner keyboard = new Scanner(System.in);
 		String name = "";
 		boolean random = false;
-		Player bot1, bot2;
-		Player human1, human2;
 		String player1_name = "";
 		String player2_name = "";
 
