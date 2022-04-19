@@ -102,7 +102,7 @@ public class Play {
 		String player1_name = keyboard.nextLine();
 		System.out.println("Which is your name player 2?");
 		String player2_name = keyboard.nextLine();
-		/* String name = null; */
+		/* String name = ""; */
 
 		Player player1 = new Human(player1_name, 1);
 		Player player2 = new Human(player2_name, 2);
