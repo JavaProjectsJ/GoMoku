@@ -3,16 +3,16 @@ package game;
 import java.util.Scanner;
 
 public class Play {
-	static boolean game = true;
-	static boolean playerTurn = true;
-	static boolean possibleMove = false;
-	static boolean exit = false;
-	static Player bot1;
-	static Player bot2;
-	static Player human1;
-	static Player human2;
+	boolean game = true;
+	boolean playerTurn = true;
+	boolean possibleMove = false;
+	boolean exit = false;
+	Player bot1;
+	Player bot2;
+	Player human1;
+	Player human2;
 
-	public static void asciiArt(int option) {
+	public void asciiArt(int option) {
 		switch (option) {
 		case 1:
 			System.out.printf(
@@ -40,7 +40,7 @@ public class Play {
 	}
 
 	@SuppressWarnings("resource")
-	public static boolean readChar(char affirmativeValue) {
+	public boolean readChar(char affirmativeValue) {
 		Scanner keyboard = new Scanner(System.in);
 		char c = keyboard.next().charAt(0);
 		if (affirmativeValue == c) {
@@ -49,7 +49,7 @@ public class Play {
 		return false;
 	}
 
-	public static void menu() {
+	public void menu() {
 		int option = 0;
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
@@ -87,11 +87,11 @@ public class Play {
 		// ESPERAR 3 SEG
 		// BORRAR PRESENTACION
 		// MOSTRAR OPCIONES
-		asciiArt(1);
-		menu();
+		new Play().asciiArt(1);
+		new Play().menu();
 	}
 
-	public static boolean randomize() {
+	public boolean randomize() {
 		System.out.println("\nWould you like to randomize who will start?");
 		boolean randomize = readChar('y');
 		if(randomize) {
@@ -102,7 +102,7 @@ public class Play {
 	}
 
 	@SuppressWarnings({ "unused", "resource" })
-	public static int players(int option) {
+	public int players(int option) {
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		String name = "";
@@ -164,7 +164,7 @@ public class Play {
 		return option;
 	}
 
-	public static void newGame(int option) {
+	public void newGame(int option) {
 		int[] position;
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
@@ -243,7 +243,7 @@ public class Play {
 		reset();
 	}
 
-	public static void reset() {
+	public void reset() {
 		System.out.println("Would you like to play again?");
 		boolean valid = readChar('y');
 		if (valid) {
@@ -251,7 +251,7 @@ public class Play {
 		}
 	}
 
-	public static boolean validatePosition(int[] position, Board board) throws Exception {
+	public boolean validatePosition(int[] position, Board board) throws Exception {
 		possibleMove = false;
 		/* Validate if position is in the board size */
 		if (position[0] < 0 || position[0] > 14 || position[1] < 0 || position[1] > 14) {
@@ -267,14 +267,14 @@ public class Play {
 		return possibleMove;
 	}
 
-	public static void validateWin(Board board) {
+	public void validateWin(Board board) {
 		validateHorizontalToWin(board);
 		validateVerticalToWin(board);
 		validateDiagonalToWin(board);
 		validateReversedDiagonalToWin(board);
 	}
 
-	public static void validateHorizontalToWin(Board board) {
+	public void validateHorizontalToWin(Board board) {
 		/* Validate if in the horizontal line are 5 pieces */
 		for (int i = 0; i < board.getTableSize(); i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
@@ -290,7 +290,7 @@ public class Play {
 		}
 	}
 
-	public static void validateVerticalToWin(Board board) {
+	public void validateVerticalToWin(Board board) {
 		/* Validate if in the vertical line are 5 pieces */
 		for (int i = 0; i < board.getTableSize(); i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
@@ -306,7 +306,7 @@ public class Play {
 		}
 	}
 
-	public static void validateDiagonalToWin(Board board) {
+	public void validateDiagonalToWin(Board board) {
 		/* Validate if in the diagonal line are 5 pieces */
 		for (int i = 0; i < board.getTableSize() - 4; i++) {
 			for (int j = 0; j < board.getTableSize() - 4; j++) {
@@ -322,7 +322,7 @@ public class Play {
 		}
 	}
 
-	public static void validateReversedDiagonalToWin(Board board) {
+	public void validateReversedDiagonalToWin(Board board) {
 		/* Validate if in the reversed diagonal line are 5 pieces */
 		for (int i = 0; i < board.getTableSize() - 4; i++) {
 			for (int j = 4; j < board.getTableSize(); j++) {
@@ -338,7 +338,7 @@ public class Play {
 		}
 	}
 
-	public static int[] coordinates() {
+	public int[] coordinates() {
 		Scanner keyboard = new Scanner(System.in);
 		String coordinates = keyboard.nextLine();
 		String[] coordinates_split = coordinates.split(",");
@@ -348,15 +348,15 @@ public class Play {
 		return positions;
 	}
 
-	public final static void clearConsole() {
+	public final void clearConsole() {
 		System.out.println();
 	}
 
-	public static void finishGame() {
+	public void finishGame() {
 		playerTurn = false;
 		game = false;
 	}
 
-	public static void showResult() {
+	public void showResult() {
 	}
 }
