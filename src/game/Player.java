@@ -2,11 +2,11 @@ package game;
 
 import java.util.ArrayList;
 
-public class Player {
+public abstract class Player {
 
-	private String name;
-	private int score;
-	private ArrayList<String> piece;
+	protected String name;
+	protected int score;
+	protected ArrayList<String> piece;
 	public int symbolPiece;
 
 	public int getSymbolPiece() {

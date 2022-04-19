@@ -15,7 +15,7 @@ public enum Database {
 		this.name = str;
 	}
 
-	public String nmb() {
+	public static String nmb() {
 		return NAME.name[new Random().nextInt(NAME.name.length)];
 	}
 }
