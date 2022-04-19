@@ -6,6 +6,7 @@ public class Play {
 	static boolean game = true;
 	static boolean playerTurn = true;
 	static boolean possibleMove = false;
+	static boolean exit = false;
 
 	public static void asciiArt(int option) {
 		switch (option) {
@@ -34,6 +35,52 @@ public class Play {
 		}
 	}
 
+	public static char readChar(String validCharacters) {
+		Scanner keyboard = new Scanner(System.in);
+		char c;
+		boolean exit = true;
+		do {
+			c = keyboard.next().charAt(0);
+			for (int i = 0; i < validCharacters.length(); i++) {
+				if (c == validCharacters.charAt(i)) {
+					exit = false;
+				}
+			}
+		} while (exit);
+		return c;
+	}
+
+	public static void menu() {
+		int option = 0;
+		exit = false;
+		Scanner keyboard = new Scanner(System.in);
+
+		do {
+			System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
+					+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
+			option = keyboard.nextInt();
+			System.out.println();
+			switch (option) {
+			case 1:
+				newGame(15);
+				exit = true;
+				break;
+			case 2:
+				newGame(19);
+				exit = true;
+				break;
+			case 3:
+				System.out.println("Stopping the game execution");
+				exit = true;
+				break;
+			default:
+				System.out.println("Invalid option\nTry it again!\n");
+				exit = false;
+				break;
+			}
+		} while (!exit);
+	}
+
 	public static void main(String[] args) {
 		// PRESENTAR EL JUEGO Y OPCIONES //
 		// GOMUKU BY JOSE
@@ -41,35 +88,13 @@ public class Play {
 		// ESPERAR 3 SEG
 		// BORRAR PRESENTACION
 		// MOSTRAR OPCIONES
-		int option = 0;
 		asciiArt(1);
-		Scanner keyboard = new Scanner(System.in);
-
-		/* do { */
-		System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
-				+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
-		option = keyboard.nextInt();
-		System.out.println();
-		switch (option) {
-		case 1:
-			newGame(15);
-			break;
-		case 2:
-			newGame(19);
-			break;
-		case 3:
-			System.out.println("Stopping the game execution");
-			break;
-		default:
-			System.out.println("Invalid option\nTry it again!\n");
-			break;
-		}
-		/* } while (option != 3); */
+		menu();
 	}
 
 	public static void newGame(int option) {
 		int[] position;
-		boolean exit = false;
+		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
 		/* Create the players */
@@ -126,6 +151,15 @@ public class Play {
 		}
 		asciiArt(2);
 		showResult();
+		System.out.println("Would you like to play again?");
+		reset();
+	}
+
+	public static void reset() {
+		char valid = readChar("y");
+		if (valid == 'y') {
+			menu();
+		}
 	}
 
 	public static boolean validatePosition(int[] position, Board board) throws Exception {
