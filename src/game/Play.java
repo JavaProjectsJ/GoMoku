@@ -97,8 +97,7 @@ public class Play {
 	}
 
 	@SuppressWarnings({ "unused", "resource" })
-	public static void players() {
-		int option = 0;
+	public static int players(int option) {
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		String name = "";
@@ -107,9 +106,6 @@ public class Play {
 		String player2_name = "";
 
 		do {
-			System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n"
-					+ "\t2.- Human vs Bot\n" + "\t3.- Human vs Human\n" + "Choose your option: ");
-			option = keyboard.nextInt();
 			System.out.println();
 			switch (option) {
 			case 1:
@@ -119,17 +115,17 @@ public class Play {
 				break;
 			case 2:
 				System.out.println("Which is your name player 1?");
-				player1_name = keyboard.nextLine() + keyboard.nextLine();
+				player1_name = keyboard.nextLine();
 				human1 = new Human(player1_name, 1);
 				bot1 = new Bot(name, 2);
 				exit = true;
 				break;
 			case 3:
 				System.out.println("Which is your name player 1?");
-				player1_name = keyboard.nextLine() + keyboard.nextLine();
+				player1_name = keyboard.nextLine();
 				human1 = new Human(player1_name, 1);
 				System.out.println("Which is your name player 2?");
-				player2_name = keyboard.nextLine() + keyboard.nextLine();
+				player2_name = keyboard.nextLine();
 				human2 = new Human(player1_name, 2);
 				exit = true;
 				break;
@@ -139,6 +135,7 @@ public class Play {
 				break;
 			}
 		} while (!exit);
+		return option;
 	}
 
 	public static void newGame(int option) {
@@ -147,21 +144,11 @@ public class Play {
 		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
 		/* Create the players */
-		players();
-		System.out.println("Which is your name player 1?");
-		String player1_name = keyboard.nextLine();
-		System.out.println("Which is your name player 2?");
-		String player2_name = keyboard.nextLine();
-		/* String name = ""; */
+		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n"
+				+ "\t2.- Human vs Bot\n" + "\t3.- Human vs Human\n" + "Choose your option: ");
+		int playerOption = players(keyboard.nextInt());
 
-		Player player1 = new Human(player1_name, 1);
-		Player player2 = new Human(player2_name, 2);
-		/*
-		 * Now we have an initial BOT just uncomment this
-		 * Player bot = new Bot(name, 2);
-		 *
-		 */
-
+		/* Clear the console a bit */
 		clearConsole();
 
 		/* Create the board */
@@ -173,10 +160,18 @@ public class Play {
 				clearConsole();
 				do {
 					try {
-						System.out.println("Insert the coordinates " + player1.getName());
+						if (playerOption == 1) {
+							System.out.println("Insert the coordinates " + bot1.getName());
+						} else if (playerOption == 2 || playerOption == 3) {
+							System.out.println("Insert the coordinates " + human1.getName());
+						}
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
-						board.insertPiece(position[0], position[1], player1.symbolPiece);
+						if (playerOption == 1) {
+							board.insertPiece(position[0], position[1], bot1.symbolPiece);
+						} else if (playerOption == 2 || playerOption == 3) {
+							board.insertPiece(position[0], position[1], human1.symbolPiece);
+						}
 						exit = true;
 					} catch (Exception e) {
 						keyboard.reset();
@@ -191,12 +186,22 @@ public class Play {
 			if (playerTurn) {
 				do {
 					try {
-						System.out.println("Insert the coordinates " + player2.getName());
-						/* System.out.println("Insert the coordinates " + bot.getName()); */
+						if (playerOption == 1) {
+							System.out.println("Insert the coordinates " + bot2.getName());
+						} else if (playerOption == 2) {
+							System.out.println("Insert the coordinates " + bot1.getName());
+						} else if(playerOption == 3) {
+							System.out.println("Insert the coordinates " + human2.getName());
+						}
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
-						board.insertPiece(position[0], position[1], player2.symbolPiece);
-						/* board.insertPiece(position[0], position[1], bot.symbolPiece); */
+						if (playerOption == 1) {
+							board.insertPiece(position[0], position[1], bot2.symbolPiece);
+						} else if (playerOption == 2) {
+							board.insertPiece(position[0], position[1], bot1.symbolPiece);
+						} else if(playerOption == 3) {
+							board.insertPiece(position[0], position[1], human2.symbolPiece);
+						}
 						exit = true;
 					} catch (Exception e) {
 						keyboard.reset();
