@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Play {
@@ -11,6 +12,7 @@ public class Play {
 	boolean playerTurn = true;
 	boolean possibleMove = false;
 	boolean exit = false;
+	boolean random = false;
 	Player bot1;
 	Player bot2;
 	Player human1;
@@ -102,10 +104,8 @@ public class Play {
 		new Play().menu();
 	}
 
-	public boolean randomize() {
-		System.out.println("\nWould you like to randomize who will start?");
-		boolean randomize = readChar('y');
-		if (randomize) {
+	public boolean randomize(boolean rnd) {
+		if (rnd) {
 			return true;
 		} else {
 			return false;
@@ -117,12 +117,18 @@ public class Play {
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		String name = "";
-		boolean random = false;
 		String player1_name = "";
 		String player2_name = "";
 		int b = (int) (Math.random() * (2 - 1 + 1) + 1);
 		int c = (int) (Math.random() * (2 - 1 + 1) + 1);
-		random = randomize();
+		System.out.println("\nWould you like to randomize who will start?");
+		if (readChar('y')) {
+			random = true;
+			randomize(random);
+		} else {
+			random = false;
+			randomize(random);
+		}
 		if (random && b == c) {
 			c = (int) (Math.random() * (2 - 1 + 1) + 1);
 		}
@@ -180,6 +186,7 @@ public class Play {
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
+		final int randomPlayer = new Random().nextInt(2) + 1;
 		/* Create the players */
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
@@ -197,17 +204,61 @@ public class Play {
 				clearConsole();
 				do {
 					try {
-						if (playerOption == 1) {
-							System.out.println("Insert the coordinates " + bot1.getName());
-						} else if (playerOption == 2 || playerOption == 3) {
-							System.out.println("Insert the coordinates " + human1.getName());
+						if (randomize(random)) {
+							if (playerOption == 1) {
+								if (randomPlayer == 1) {
+									System.out.println("Insert the coordinates " + bot1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + bot2.getName());
+								}
+							} else if (playerOption == 2) {
+								if (randomPlayer == 1) {
+									System.out.println("Insert the coordinates " + human1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + bot1.getName());
+								}
+							} else if (playerOption == 3) {
+								if (randomPlayer == 1) {
+									System.out.println("Insert the coordinates " + human1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + human2.getName());
+								}
+							}
+						} else {
+							if (playerOption == 1) {
+								System.out.println("Insert the coordinates " + bot1.getName());
+							} else if (playerOption == 2 || playerOption == 3) {
+								System.out.println("Insert the coordinates " + human1.getName());
+							}
 						}
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
-						if (playerOption == 1) {
-							board.insertPiece(position[0], position[1], bot1.symbolPiece);
-						} else if (playerOption == 2 || playerOption == 3) {
-							board.insertPiece(position[0], position[1], human1.symbolPiece);
+						if (randomize(random)) {
+							if (playerOption == 1) {
+								if (randomPlayer == 1) {
+									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], bot2.symbolPiece);
+								}
+							} else if (playerOption == 2) {
+								if (randomPlayer == 1) {
+									board.insertPiece(position[0], position[1], human1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+								}
+							} else if (playerOption == 3) {
+								if (randomPlayer == 1) {
+									board.insertPiece(position[0], position[1], human1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], human2.symbolPiece);
+								}
+							}
+						} else {
+							if (playerOption == 1) {
+								board.insertPiece(position[0], position[1], bot1.symbolPiece);
+							} else if (playerOption == 2 || playerOption == 3) {
+								board.insertPiece(position[0], position[1], human1.symbolPiece);
+							}
 						}
 						exit = true;
 					} catch (Exception e) {
@@ -223,21 +274,65 @@ public class Play {
 			if (playerTurn) {
 				do {
 					try {
-						if (playerOption == 1) {
-							System.out.println("Insert the coordinates " + bot2.getName());
-						} else if (playerOption == 2) {
-							System.out.println("Insert the coordinates " + bot1.getName());
-						} else if (playerOption == 3) {
-							System.out.println("Insert the coordinates " + human2.getName());
+						if (randomize(random)) {
+							if (playerOption == 1) {
+								if (randomPlayer != 1) {
+									System.out.println("Insert the coordinates " + bot2.getName());
+								} else {
+									System.out.println("Insert the coordinates " + bot1.getName());
+								}
+							} else if (playerOption == 2) {
+								if (randomPlayer != 1) {
+									System.out.println("Insert the coordinates " + bot1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + human1.getName());
+								}
+							} else if (playerOption == 3) {
+								if (randomPlayer != 1) {
+									System.out.println("Insert the coordinates " + human2.getName());
+								} else {
+									System.out.println("Insert the coordinates " + human1.getName());
+								}
+							}
+						} else {
+							if (playerOption == 1) {
+								System.out.println("Insert the coordinates " + bot2.getName());
+							} else if (playerOption == 2) {
+								System.out.println("Insert the coordinates " + bot1.getName());
+							} else if (playerOption == 3) {
+								System.out.println("Insert the coordinates " + human2.getName());
+							}
 						}
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
-						if (playerOption == 1) {
-							board.insertPiece(position[0], position[1], bot2.symbolPiece);
-						} else if (playerOption == 2) {
-							board.insertPiece(position[0], position[1], bot1.symbolPiece);
-						} else if (playerOption == 3) {
-							board.insertPiece(position[0], position[1], human2.symbolPiece);
+						if (randomize(random)) {
+							if (playerOption == 1) {
+								if (randomPlayer != 1) {
+									board.insertPiece(position[0], position[1], bot2.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+								}
+							} else if (playerOption == 2) {
+								if (randomPlayer != 1) {
+									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], human1.symbolPiece);
+								}
+							} else if (playerOption == 3) {
+								if (randomPlayer != 1) {
+									board.insertPiece(position[0], position[1], human2.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], human1.symbolPiece);
+								}
+							}
+						} else {
+							if (playerOption == 1) {
+								board.insertPiece(position[0], position[1], bot2.symbolPiece);
+							} else if (playerOption == 2) {
+								board.insertPiece(position[0], position[1], bot1.symbolPiece);
+							} else if (playerOption == 3) {
+								board.insertPiece(position[0], position[1], human2.symbolPiece);
+							}
 						}
 						exit = true;
 					} catch (Exception e) {
