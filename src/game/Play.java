@@ -277,21 +277,21 @@ public class Play {
 						if (randomize(random)) {
 							if (playerOption == 1) {
 								if (randomPlayer != 1) {
-									System.out.println("Insert the coordinates " + bot2.getName());
-								} else {
 									System.out.println("Insert the coordinates " + bot1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + bot2.getName());
 								}
 							} else if (playerOption == 2) {
 								if (randomPlayer != 1) {
-									System.out.println("Insert the coordinates " + bot1.getName());
-								} else {
 									System.out.println("Insert the coordinates " + human1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + bot1.getName());
 								}
 							} else if (playerOption == 3) {
 								if (randomPlayer != 1) {
-									System.out.println("Insert the coordinates " + human2.getName());
-								} else {
 									System.out.println("Insert the coordinates " + human1.getName());
+								} else {
+									System.out.println("Insert the coordinates " + human2.getName());
 								}
 							}
 						} else {
@@ -308,21 +308,21 @@ public class Play {
 						if (randomize(random)) {
 							if (playerOption == 1) {
 								if (randomPlayer != 1) {
-									board.insertPiece(position[0], position[1], bot2.symbolPiece);
-								} else {
 									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], bot2.symbolPiece);
 								}
 							} else if (playerOption == 2) {
 								if (randomPlayer != 1) {
-									board.insertPiece(position[0], position[1], bot1.symbolPiece);
-								} else {
 									board.insertPiece(position[0], position[1], human1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], bot1.symbolPiece);
 								}
 							} else if (playerOption == 3) {
 								if (randomPlayer != 1) {
-									board.insertPiece(position[0], position[1], human2.symbolPiece);
-								} else {
 									board.insertPiece(position[0], position[1], human1.symbolPiece);
+								} else {
+									board.insertPiece(position[0], position[1], human2.symbolPiece);
 								}
 							}
 						} else {
