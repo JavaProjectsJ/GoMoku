@@ -84,6 +84,12 @@ public class Play {
 		} while (!exit);
 	}
 
+	public void rules() {
+		System.out.println("\033[38;5;177mImportant notice!\n"
+				+ "The winner will be the first player that align 5 pieces in a vertical,"
+				+ " horizontal or crosswise line,\nIf there are more than 5 pieces the player will also win\n\u001B[0m");
+	}
+
 	public static void main(String[] args) {
 		// PRESENTAR EL JUEGO Y OPCIONES //
 		// GOMUKU BY JOSE
@@ -92,6 +98,7 @@ public class Play {
 		// BORRAR PRESENTACION
 		// MOSTRAR OPCIONES
 		new Play().asciiArt(1);
+		new Play().rules();
 		new Play().menu();
 	}
 
