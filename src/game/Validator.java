@@ -2,6 +2,23 @@ package game;
 
 public class Validator {
 
+    public boolean validatePosition(int[] position, Board board) throws Exception {
+        boolean possibleMove = false;
+        /* Validate if position is in the board size */
+        if (position[0] < 0 || position[0] > 14 || position[1] < 0 || position[1] > 14) {
+            System.out.println("The position is not in the board size");
+            throw new Exception("Try again");
+            /* Validate if the position is empty */
+        } else if (board.getPiece(position[0], position[1]) != 0) {
+            System.out.println("The position is not empty");
+            throw new Exception("Try again");
+        } else {
+            possibleMove = true;
+        }
+        possibleMove = validateWin(board);
+        return possibleMove;
+    }
+
     public boolean validateWin(Board board) {
         if(validateHorizontalToWin(board)) {
             return true;
