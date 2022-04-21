@@ -104,14 +104,6 @@ public class Play {
 		new Play().menu();
 	}
 
-	public boolean randomize(boolean rnd) {
-		if (rnd) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	@SuppressWarnings({ "unused", "resource" })
 	public int players(int option) {
 		exit = false;
@@ -124,10 +116,8 @@ public class Play {
 		System.out.println("\nWould you like to randomize who will start?");
 		if (readChar('y')) {
 			random = true;
-			randomize(random);
 		} else {
 			random = false;
-			randomize(random);
 		}
 		if (random && b == c) {
 			c = (int) (Math.random() * (2 - 1 + 1) + 1);
@@ -206,7 +196,7 @@ public class Play {
 				clearConsole();
 				do {
 					try {
-						if (randomize(random)) {
+						if (random) {
 							if (playerOption == 1) {
 								if (randomPlayer == 1) {
 									System.out.println("Insert the coordinates " + bot1.getName());
@@ -235,7 +225,7 @@ public class Play {
 						}
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
-						if (randomize(random)) {
+						if (random) {
 							if (playerOption == 1) {
 								if (randomPlayer == 1) {
 									board.insertPiece(position[0], position[1], bot1.symbolPiece);
@@ -279,7 +269,7 @@ public class Play {
 			if (playerTurn) {
 				do {
 					try {
-						if (randomize(random)) {
+						if (random) {
 							if (playerOption == 1) {
 								if (randomPlayer != 1) {
 									System.out.println("Insert the coordinates " + bot1.getName());
@@ -310,7 +300,7 @@ public class Play {
 						}
 						position = coordinates();
 						possibleMove = validatePosition(position, board);
-						if (randomize(random)) {
+						if (random) {
 							if (playerOption == 1) {
 								if (randomPlayer != 1) {
 									board.insertPiece(position[0], position[1], bot1.symbolPiece);
