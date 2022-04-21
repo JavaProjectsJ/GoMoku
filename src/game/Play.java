@@ -17,33 +17,7 @@ public class Play {
 	Player bot2;
 	Player human1;
 	Player human2;
-
-	public void asciiArt(int option) {
-		switch (option) {
-		case 1:
-			System.out.printf(
-					"                                                                                                                 \n"
-							+ " ██████╗  ██████╗ ███╗   ███╗ ██████╗ ██╗  ██╗██╗   ██╗    ██████╗ ██╗   ██╗         ██╗ ██████╗ ███████╗███████╗\n"
-							+ "██╔════╝ ██╔═══██╗████╗ ████║██╔═══██╗██║ ██╔╝██║   ██║    ██╔══██╗╚██╗ ██╔╝         ██║██╔═══██╗██╔════╝██╔════╝\n"
-							+ "██║  ███╗██║   ██║██╔████╔██║██║   ██║█████╔╝ ██║   ██║    ██████╔╝ ╚████╔╝          ██║██║   ██║███████╗█████╗  \n"
-							+ "██║   ██║██║   ██║██║╚██╔╝██║██║   ██║██╔═██╗ ██║   ██║    ██╔══██╗  ╚██╔╝      ██   ██║██║   ██║╚════██║██╔══╝  \n"
-							+ "╚██████╔╝╚██████╔╝██║ ╚═╝ ██║╚██████╔╝██║  ██╗╚██████╔╝    ██████╔╝   ██║       ╚█████╔╝╚██████╔╝███████║███████╗\n"
-							+ " ╚═════╝  ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝     ╚═════╝    ╚═╝        ╚════╝  ╚═════╝ ╚══════╝╚══════╝\n"
-							+ "                                                                                                                 \n");
-			break;
-		case 2:
-			System.out.printf(
-					"                                                                                                                 \n"
-							+ "                   ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗                   \n"
-							+ "     ▀▄   ▄▀      ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗    ▄ ▀▄   ▄▀ ▄   \n"
-							+ "    ▄█▀███▀█▄     ██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝    █▄███████▄█   \n"
-							+ "   █▀███████▀█    ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗    ███▄███▄███   \n"
-							+ "   █ █▀▀▀▀▀█ █    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║    ▀█████████▀   \n"
-							+ "      ▀▀ ▀▀        ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝     ▄▀     ▀▄    \n"
-							+ "                                                                                                              \n");
-			break;
-		}
-	}
+	AsciiArt ascii = new AsciiArt();
 
 	@SuppressWarnings("resource")
 	public boolean readChar(char affirmativeValue) {
@@ -93,15 +67,19 @@ public class Play {
 	}
 
 	public static void main(String[] args) {
+		new Play().show();
+	}
+
+	public void show() {
 		// PRESENTAR EL JUEGO Y OPCIONES //
 		// GOMUKU BY JOSE
 		// MOSTRAR PRESENTACION
 		// ESPERAR 3 SEG
 		// BORRAR PRESENTACION
 		// MOSTRAR OPCIONES
-		new Play().asciiArt(1);
-		new Play().rules();
-		new Play().menu();
+		ascii.asciiArt(1);
+		rules();
+		menu();
 	}
 
 	@SuppressWarnings({ "unused", "resource" })
@@ -259,7 +237,7 @@ public class Play {
 						exit = false;
 					}
 				} while (!exit);
-				if(validator.validateWin(board)){
+				if (validator.validateWin(board)) {
 					playerTurn = false;
 					game = false;
 				}
@@ -339,7 +317,7 @@ public class Play {
 				board.showBoard();
 			}
 		}
-		asciiArt(2);
+		ascii.asciiArt(2);
 		showResult();
 		reset();
 		hallOfFame();
