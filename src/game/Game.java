@@ -57,15 +57,17 @@ public class Game {
                         if(randomPiece==1){
                             bot1 = new Bot(name, 1, true);
                             bot2 = new Bot(name, 2, false);
+                            playerList = Arrays.asList(bot1, bot2);
                         } else {
                             bot2 = new Bot(name, 1, true);
                             bot1 = new Bot(name, 2, false);
+                            playerList = Arrays.asList(bot2, bot1);
                         }
                     } else {
                         bot1 = new Bot(name, 1, true);
                         bot2 = new Bot(name, 2, false);
+                        playerList = Arrays.asList(bot1, bot2);
                     }
-                    playerList = Arrays.asList(bot1, bot2);
                     exit = true;
                     break;
                 case 2:
@@ -75,15 +77,18 @@ public class Game {
                         if(randomPiece==1){
                             human1 = new Human(player1_name, 1, true);
                             bot1 = new Bot(name, 2, false);
+                            playerList = Arrays.asList(human1, bot1);
                         } else {
                             bot1 = new Bot(name, 1, true);
                             human1 = new Human(player1_name, 2, false);
+                            playerList = Arrays.asList(bot1, human1);
                         }
                     } else {
                         human1 = new Human(player1_name, 1, true);
                         bot1 = new Bot(name, 2, false);
+                        playerList = Arrays.asList(human1, bot1);
                     }
-                    playerList = Arrays.asList(human1, bot1);
+
                     exit = true;
                     break;
                 case 3:
@@ -95,15 +100,17 @@ public class Game {
                         if(randomPiece==1){
                             human1 = new Human(player1_name, 1, true);
                             human2 = new Human(player2_name, 2, false);
+                            playerList = Arrays.asList(human1, human2);
                         } else {
                             human2 = new Human(player2_name, 1, true);
                             human1 = new Human(player1_name, 2, false);
+                            playerList = Arrays.asList(human2, human1);
                         }
                     } else {
                         human1 = new Human(player1_name, 1, true);
                         human2 = new Human(player2_name, 2, false);
+                        playerList = Arrays.asList(human1, human2);
                     }
-                    playerList = Arrays.asList(human1, human2);
                     exit = true;
                     break;
                 default:
@@ -114,5 +121,4 @@ public class Game {
         } while (!exit);
         return playerList;
     }
-
 }

@@ -51,6 +51,7 @@ public class Play {
 
 
 	public void menu() {
+		show();
 		int option = 0;
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
@@ -93,7 +94,7 @@ public class Play {
 	}
 
 	public static void main(String[] args) {
-		new Play().show();
+		new Play().menu();
 	}
 
 	public void show() {
@@ -105,7 +106,6 @@ public class Play {
 		// MOSTRAR OPCIONES
 		ascii.asciiArt(1);
 		rules();
-		menu();
 	}
 
 	public void newGame(int option) {
@@ -130,6 +130,8 @@ public class Play {
 
 		/* Start the game */
 		while (game.status) {
+			clearConsole();
+			System.out.println("Insert the coordinates " + game.playerList.get(0).getName());
 			game.setStatus(false);
 		}
 //			if (playerTurn) {
