@@ -198,6 +198,8 @@ public class Play {
 		/* Create the board */
 		board.showBoard();
 
+		Validator validator = new Validator();
+
 		/* Start the game */
 		while (game) {
 			if (playerTurn) {
@@ -267,7 +269,10 @@ public class Play {
 						exit = false;
 					}
 				} while (!exit);
-				validateWin(board);
+				if(validator.validateWin(board)){
+					playerTurn = false;
+					game = false;
+				}
 				board.showBoard();
 			}
 			clearConsole();
@@ -374,77 +379,6 @@ public class Play {
 		return possibleMove;
 	}
 
-	public void validateWin(Board board) {
-		validateHorizontalToWin(board);
-		validateVerticalToWin(board);
-		validateDiagonalToWin(board);
-		validateReversedDiagonalToWin(board);
-	}
-
-	public void validateHorizontalToWin(Board board) {
-		/* Validate if in the horizontal line are 5 pieces */
-		for (int i = 0; i < board.getTableSize(); i++) {
-			for (int j = 0; j < board.getTableSize() - 4; j++) {
-				if (board.getPiece(i, j) != 0) {
-					if (board.getPiece(i, j) == board.getPiece(i, j + 1)
-							&& board.getPiece(i, j) == board.getPiece(i, j + 2)
-							&& board.getPiece(i, j) == board.getPiece(i, j + 3)
-							&& board.getPiece(i, j) == board.getPiece(i, j + 4)) {
-						finishGame();
-					}
-				}
-			}
-		}
-	}
-
-	public void validateVerticalToWin(Board board) {
-		/* Validate if in the vertical line are 5 pieces */
-		for (int i = 0; i < board.getTableSize(); i++) {
-			for (int j = 0; j < board.getTableSize() - 4; j++) {
-				if (board.getPiece(j, i) != 0) {
-					if (board.getPiece(j, i) == board.getPiece(j + 1, i)
-							&& board.getPiece(j, i) == board.getPiece(j + 2, i)
-							&& board.getPiece(j, i) == board.getPiece(j + 3, i)
-							&& board.getPiece(j, i) == board.getPiece(j + 4, i)) {
-						finishGame();
-					}
-				}
-			}
-		}
-	}
-
-	public void validateDiagonalToWin(Board board) {
-		/* Validate if in the diagonal line are 5 pieces */
-		for (int i = 0; i < board.getTableSize() - 4; i++) {
-			for (int j = 0; j < board.getTableSize() - 4; j++) {
-				if (board.getPiece(i, j) != 0) {
-					if (board.getPiece(i, j) == board.getPiece(i + 1, j + 1)
-							&& board.getPiece(i, j) == board.getPiece(i + 2, j + 2)
-							&& board.getPiece(i, j) == board.getPiece(i + 3, j + 3)
-							&& board.getPiece(i, j) == board.getPiece(i + 4, j + 4)) {
-						finishGame();
-					}
-				}
-			}
-		}
-	}
-
-	public void validateReversedDiagonalToWin(Board board) {
-		/* Validate if in the reversed diagonal line are 5 pieces */
-		for (int i = 0; i < board.getTableSize() - 4; i++) {
-			for (int j = 4; j < board.getTableSize(); j++) {
-				if (board.getPiece(i, j) != 0) {
-					if (board.getPiece(i, j) == board.getPiece(i + 1, j - 1)
-							&& board.getPiece(i, j) == board.getPiece(i + 2, j - 2)
-							&& board.getPiece(i, j) == board.getPiece(i + 3, j - 3)
-							&& board.getPiece(i, j) == board.getPiece(i + 4, j - 4)) {
-						finishGame();
-					}
-				}
-			}
-		}
-	}
-
 	public int[] coordinates() {
 		Scanner keyboard = new Scanner(System.in);
 		String coordinates = keyboard.nextLine();
@@ -457,11 +391,6 @@ public class Play {
 
 	public final void clearConsole() {
 		System.out.println();
-	}
-
-	public void finishGame() {
-		playerTurn = false;
-		game = false;
 	}
 
 	public void showResult() {
