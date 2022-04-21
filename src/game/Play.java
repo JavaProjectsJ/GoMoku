@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,27 +15,51 @@ public class Play {
 	boolean possibleMove = false;
 	boolean exit = false;
 	boolean random = false;
-	Player bot1;
-	Player bot2;
-	Player human1;
-	Player human2;
-	AsciiArt ascii = new AsciiArt();
+	KeyboardGame keyboardGame = new KeyboardGame();
 
-	@SuppressWarnings("resource")
-	public boolean readChar(char affirmativeValue) {
-		Scanner keyboard = new Scanner(System.in);
-		char c = keyboard.next().charAt(0);
-		if (affirmativeValue == c) {
-			return true;
+
+	List<Player> playerList = new ArrayList<>();
+
+	public void asciiArt(int option) {
+		switch (option) {
+		case 1:
+			System.out.printf(
+					"                                                                                                                 \n"
+							+ " ██████╗  ██████╗ ███╗   ███╗ ██████╗ ██╗  ██╗██╗   ██╗    ██████╗ ██╗   ██╗         ██╗ ██████╗ ███████╗███████╗\n"
+							+ "██╔════╝ ██╔═══██╗████╗ ████║██╔═══██╗██║ ██╔╝██║   ██║    ██╔══██╗╚██╗ ██╔╝         ██║██╔═══██╗██╔════╝██╔════╝\n"
+							+ "██║  ███╗██║   ██║██╔████╔██║██║   ██║█████╔╝ ██║   ██║    ██████╔╝ ╚████╔╝          ██║██║   ██║███████╗█████╗  \n"
+							+ "██║   ██║██║   ██║██║╚██╔╝██║██║   ██║██╔═██╗ ██║   ██║    ██╔══██╗  ╚██╔╝      ██   ██║██║   ██║╚════██║██╔══╝  \n"
+							+ "╚██████╔╝╚██████╔╝██║ ╚═╝ ██║╚██████╔╝██║  ██╗╚██████╔╝    ██████╔╝   ██║       ╚█████╔╝╚██████╔╝███████║███████╗\n"
+							+ " ╚═════╝  ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝     ╚═════╝    ╚═╝        ╚════╝  ╚═════╝ ╚══════╝╚══════╝\n"
+							+ "                                                                                                                 \n");
+			break;
+		case 2:
+			System.out.printf(
+					"                                                                                                                 \n"
+							+ "                   ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗                   \n"
+							+ "     ▀▄   ▄▀      ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗    ▄ ▀▄   ▄▀ ▄   \n"
+							+ "    ▄█▀███▀█▄     ██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝    █▄███████▄█   \n"
+							+ "   █▀███████▀█    ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗    ███▄███▄███   \n"
+							+ "   █ █▀▀▀▀▀█ █    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║    ▀█████████▀   \n"
+							+ "      ▀▀ ▀▀        ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝     ▄▀     ▀▄    \n"
+							+ "                                                                                                              \n");
+			break;
 		}
-		return false;
 	}
+>>>>>>> Update
+
+
 
 	public void menu() {
 		int option = 0;
 		exit = false;
 		Scanner keyboard = new Scanner(System.in);
 
+		chooseBoard(keyboard);
+	}
+
+	private void chooseBoard(Scanner keyboard) {
+		int option;
 		do {
 			System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
 					+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
@@ -82,73 +108,6 @@ public class Play {
 		menu();
 	}
 
-	@SuppressWarnings({ "unused", "resource" })
-	public int players(int option) {
-		exit = false;
-		Scanner keyboard = new Scanner(System.in);
-		String name = "";
-		String player1_name = "";
-		String player2_name = "";
-		int b = (int) (Math.random() * (2 - 1 + 1) + 1);
-		int c = (int) (Math.random() * (2 - 1 + 1) + 1);
-		System.out.println("\nWould you like to randomize who will start?");
-		if (readChar('y')) {
-			random = true;
-		} else {
-			random = false;
-		}
-		if (random && b == c) {
-			c = (int) (Math.random() * (2 - 1 + 1) + 1);
-		}
-
-		do {
-			System.out.println();
-			switch (option) {
-			case 1:
-				if (random) {
-					bot1 = new Bot(name, b);
-					bot2 = new Bot(name, c);
-				} else {
-					bot1 = new Bot(name, 1);
-					bot2 = new Bot(name, 2);
-				}
-				exit = true;
-				break;
-			case 2:
-				System.out.println("Which is your name player 1?");
-				player1_name = keyboard.nextLine();
-				if (random) {
-					human1 = new Human(player1_name, b);
-					bot1 = new Bot(name, c);
-				} else {
-					human1 = new Human(player1_name, 1);
-					bot1 = new Bot(name, 2);
-				}
-				exit = true;
-				break;
-			case 3:
-				System.out.println("Which is your name player 1?");
-				player1_name = keyboard.nextLine();
-				System.out.println("\nWhich is your name player 2?");
-				player2_name = keyboard.nextLine();
-				if (random) {
-					human1 = new Human(player1_name, b);
-					human2 = new Human(player1_name, c);
-				} else {
-					human1 = new Human(player1_name, 1);
-					human2 = new Human(player1_name, 2);
-				}
-				exit = true;
-				break;
-			default:
-				System.out.println("Invalid option\nTry it again!\n");
-				exit = false;
-				break;
-			}
-		} while (!exit);
-		return option;
-	}
-
 	public void newGame(int option) {
 		int[] position;
 		exit = false;
@@ -158,7 +117,8 @@ public class Play {
 		/* Create the players */
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
-		int playerOption = players(keyboard.nextInt());
+		int playerOption = keyboard.nextInt();
+		Game game = new Game(playerOption);
 
 		/* Clear the console a bit */
 		clearConsole();
@@ -169,155 +129,157 @@ public class Play {
 		Validator validator = new Validator();
 
 		/* Start the game */
-		while (game) {
-			if (playerTurn) {
-				clearConsole();
-				do {
-					try {
-						if (random) {
-							if (playerOption == 1) {
-								if (randomPlayer == 1) {
-									System.out.println("Insert the coordinates " + bot1.getName());
-								} else {
-									System.out.println("Insert the coordinates " + bot2.getName());
-								}
-							} else if (playerOption == 2) {
-								if (randomPlayer == 1) {
-									System.out.println("Insert the coordinates " + human1.getName());
-								} else {
-									System.out.println("Insert the coordinates " + bot1.getName());
-								}
-							} else if (playerOption == 3) {
-								if (randomPlayer == 1) {
-									System.out.println("Insert the coordinates " + human1.getName());
-								} else {
-									System.out.println("Insert the coordinates " + human2.getName());
-								}
-							}
-						} else {
-							if (playerOption == 1) {
-								System.out.println("Insert the coordinates " + bot1.getName());
-							} else if (playerOption == 2 || playerOption == 3) {
-								System.out.println("Insert the coordinates " + human1.getName());
-							}
-						}
-						position = coordinates();
-						possibleMove = validatePosition(position, board);
-						if (random) {
-							if (playerOption == 1) {
-								if (randomPlayer == 1) {
-									board.insertPiece(position[0], position[1], bot1.symbolPiece);
-								} else {
-									board.insertPiece(position[0], position[1], bot2.symbolPiece);
-								}
-							} else if (playerOption == 2) {
-								if (randomPlayer == 1) {
-									board.insertPiece(position[0], position[1], human1.symbolPiece);
-								} else {
-									board.insertPiece(position[0], position[1], bot1.symbolPiece);
-								}
-							} else if (playerOption == 3) {
-								if (randomPlayer == 1) {
-									board.insertPiece(position[0], position[1], human1.symbolPiece);
-								} else {
-									board.insertPiece(position[0], position[1], human2.symbolPiece);
-								}
-							}
-						} else {
-							if (playerOption == 1) {
-								board.insertPiece(position[0], position[1], bot1.symbolPiece);
-							} else if (playerOption == 2 || playerOption == 3) {
-								board.insertPiece(position[0], position[1], human1.symbolPiece);
-							}
-						}
-						exit = true;
-					} catch (Exception e) {
-						keyboard.reset();
-						System.out.println(e.getMessage());
-						exit = false;
-					}
-				} while (!exit);
-				if (validator.validateWin(board)) {
-					playerTurn = false;
-					game = false;
-				}
-				board.showBoard();
-			}
-			clearConsole();
-			if (playerTurn) {
-				do {
-					try {
-						if (random) {
-							if (playerOption == 1) {
-								if (randomPlayer != 1) {
-									System.out.println("Insert the coordinates " + bot1.getName());
-								} else {
-									System.out.println("Insert the coordinates " + bot2.getName());
-								}
-							} else if (playerOption == 2) {
-								if (randomPlayer != 1) {
-									System.out.println("Insert the coordinates " + human1.getName());
-								} else {
-									System.out.println("Insert the coordinates " + bot1.getName());
-								}
-							} else if (playerOption == 3) {
-								if (randomPlayer != 1) {
-									System.out.println("Insert the coordinates " + human1.getName());
-								} else {
-									System.out.println("Insert the coordinates " + human2.getName());
-								}
-							}
-						} else {
-							if (playerOption == 1) {
-								System.out.println("Insert the coordinates " + bot2.getName());
-							} else if (playerOption == 2) {
-								System.out.println("Insert the coordinates " + bot1.getName());
-							} else if (playerOption == 3) {
-								System.out.println("Insert the coordinates " + human2.getName());
-							}
-						}
-						position = coordinates();
-						possibleMove = validatePosition(position, board);
-						if (random) {
-							if (playerOption == 1) {
-								if (randomPlayer != 1) {
-									board.insertPiece(position[0], position[1], bot1.symbolPiece);
-								} else {
-									board.insertPiece(position[0], position[1], bot2.symbolPiece);
-								}
-							} else if (playerOption == 2) {
-								if (randomPlayer != 1) {
-									board.insertPiece(position[0], position[1], human1.symbolPiece);
-								} else {
-									board.insertPiece(position[0], position[1], bot1.symbolPiece);
-								}
-							} else if (playerOption == 3) {
-								if (randomPlayer != 1) {
-									board.insertPiece(position[0], position[1], human1.symbolPiece);
-								} else {
-									board.insertPiece(position[0], position[1], human2.symbolPiece);
-								}
-							}
-						} else {
-							if (playerOption == 1) {
-								board.insertPiece(position[0], position[1], bot2.symbolPiece);
-							} else if (playerOption == 2) {
-								board.insertPiece(position[0], position[1], bot1.symbolPiece);
-							} else if (playerOption == 3) {
-								board.insertPiece(position[0], position[1], human2.symbolPiece);
-							}
-						}
-						exit = true;
-					} catch (Exception e) {
-						keyboard.reset();
-						System.out.println(e.getMessage());
-						exit = false;
-					}
-				} while (!exit);
-				board.showBoard();
-			}
+		while (game.status) {
+			game.setStatus(false);
 		}
-		ascii.asciiArt(2);
+//			if (playerTurn) {
+//				clearConsole();
+//				do {
+//					try {
+//						if (random) {
+//							if (playerOption == 1) {
+//								if (randomPlayer == 1) {
+//									System.out.println("Insert the coordinates " + bot1.getName());
+//								} else {
+//									System.out.println("Insert the coordinates " + bot2.getName());
+//								}
+//							} else if (playerOption == 2) {
+//								if (randomPlayer == 1) {
+//									System.out.println("Insert the coordinates " + human1.getName());
+//								} else {
+//									System.out.println("Insert the coordinates " + bot1.getName());
+//								}
+//							} else if (playerOption == 3) {
+//								if (randomPlayer == 1) {
+//									System.out.println("Insert the coordinates " + human1.getName());
+//								} else {
+//									System.out.println("Insert the coordinates " + human2.getName());
+//								}
+//							}
+//						} else {
+//							if (playerOption == 1) {
+//								System.out.println("Insert the coordinates " + bot1.getName());
+//							} else if (playerOption == 2 || playerOption == 3) {
+//								System.out.println("Insert the coordinates " + human1.getName());
+//							}
+//						}
+//						position = coordinates();
+//						possibleMove = validatePosition(position, board);
+//						if (random) {
+//							if (playerOption == 1) {
+//								if (randomPlayer == 1) {
+//									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+//								} else {
+//									board.insertPiece(position[0], position[1], bot2.symbolPiece);
+//								}
+//							} else if (playerOption == 2) {
+//								if (randomPlayer == 1) {
+//									board.insertPiece(position[0], position[1], human1.symbolPiece);
+//								} else {
+//									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+//								}
+//							} else if (playerOption == 3) {
+//								if (randomPlayer == 1) {
+//									board.insertPiece(position[0], position[1], human1.symbolPiece);
+//								} else {
+//									board.insertPiece(position[0], position[1], human2.symbolPiece);
+//								}
+//							}
+//						} else {
+//							if (playerOption == 1) {
+//								board.insertPiece(position[0], position[1], bot1.symbolPiece);
+//							} else if (playerOption == 2 || playerOption == 3) {
+//								board.insertPiece(position[0], position[1], human1.symbolPiece);
+//							}
+//						}
+//						exit = true;
+//					} catch (Exception e) {
+//						keyboard.reset();
+//						System.out.println(e.getMessage());
+//						exit = false;
+//					}
+//				} while (!exit);
+//				if(validator.validateWin(board)){
+//					playerTurn = false;
+//					game = false;
+//				}
+//				board.showBoard();
+//			}
+//			clearConsole();
+//			if (playerTurn) {
+//				do {
+//					try {
+//						if (random) {
+//							if (playerOption == 1) {
+//								if (randomPlayer != 1) {
+//									System.out.println("Insert the coordinates " + bot1.getName());
+//								} else {
+//									System.out.println("Insert the coordinates " + bot2.getName());
+//								}
+//							} else if (playerOption == 2) {
+//								if (randomPlayer != 1) {
+//									System.out.println("Insert the coordinates " + human1.getName());
+//								} else {
+//									System.out.println("Insert the coordinates " + bot1.getName());
+//								}
+//							} else if (playerOption == 3) {
+//								if (randomPlayer != 1) {
+//									System.out.println("Insert the coordinates " + human1.getName());
+//								} else {
+//									System.out.println("Insert the coordinates " + human2.getName());
+//								}
+//							}
+//						} else {
+//							if (playerOption == 1) {
+//								System.out.println("Insert the coordinates " + bot2.getName());
+//							} else if (playerOption == 2) {
+//								System.out.println("Insert the coordinates " + bot1.getName());
+//							} else if (playerOption == 3) {
+//								System.out.println("Insert the coordinates " + human2.getName());
+//							}
+//						}
+//						position = coordinates();
+//						possibleMove = validatePosition(position, board);
+//						if (random) {
+//							if (playerOption == 1) {
+//								if (randomPlayer != 1) {
+//									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+//								} else {
+//									board.insertPiece(position[0], position[1], bot2.symbolPiece);
+//								}
+//							} else if (playerOption == 2) {
+//								if (randomPlayer != 1) {
+//									board.insertPiece(position[0], position[1], human1.symbolPiece);
+//								} else {
+//									board.insertPiece(position[0], position[1], bot1.symbolPiece);
+//								}
+//							} else if (playerOption == 3) {
+//								if (randomPlayer != 1) {
+//									board.insertPiece(position[0], position[1], human1.symbolPiece);
+//								} else {
+//									board.insertPiece(position[0], position[1], human2.symbolPiece);
+//								}
+//							}
+//						} else {
+//							if (playerOption == 1) {
+//								board.insertPiece(position[0], position[1], bot2.symbolPiece);
+//							} else if (playerOption == 2) {
+//								board.insertPiece(position[0], position[1], bot1.symbolPiece);
+//							} else if (playerOption == 3) {
+//								board.insertPiece(position[0], position[1], human2.symbolPiece);
+//							}
+//						}
+//						exit = true;
+//					} catch (Exception e) {
+//						keyboard.reset();
+//						System.out.println(e.getMessage());
+//						exit = false;
+//					}
+//				} while (!exit);
+//				board.showBoard();
+//			}
+//		}
+		asciiArt(2);
 		showResult();
 		reset();
 		hallOfFame();
@@ -325,7 +287,7 @@ public class Play {
 
 	public void reset() {
 		System.out.println("Would you like to play again?");
-		boolean valid = readChar('y');
+		boolean valid = keyboardGame.readChar('y');
 		if (valid) {
 			menu();
 		}
@@ -365,39 +327,39 @@ public class Play {
 	}
 
 	public void hallOfFame() {
-		File myObj = new File("HOF.txt");
-		try {
-			if (!myObj.exists()) {
-				System.out.println("File created: " + myObj.getName());
-				myObj.createNewFile();
-			}
-
-			/*
-			 * Let's read the file
-			 */
-			System.out.println("\nHOF formers:\n");
-			Scanner fReader = new Scanner(myObj);
-			while (fReader.hasNextLine()) {
-				String data = fReader.nextLine();
-				System.out.println(" - " + data);
-			}
-			fReader.close();
-			/*
-			 * Let's write the file
-			 * First value specify the file that is going to be written
-			 * Second value specify that I want to leave the info that already contains
-			 */
-			FileWriter fWritter = new FileWriter(myObj, true);
-			BufferedWriter myWriter = new BufferedWriter(fWritter);
-			myWriter.write(bot1.getName());
-			myWriter.newLine();
-			myWriter.write(bot2.getName());
-			myWriter.newLine();
-			myWriter.close();
-			System.out.println("\nInformation has been successfully written to the file.");
-		} catch (IOException e) {
-			System.out.println("\nFile couldn't be written!");
-			e.printStackTrace();
-		}
+//		File myObj = new File("HOF.txt");
+//		try {
+//			if (!myObj.exists()) {
+//				System.out.println("File created: " + myObj.getName());
+//				myObj.createNewFile();
+//			}
+//
+//			/*
+//			 * Let's read the file
+//			 */
+//			System.out.println("\nHOF formers:\n");
+//			Scanner fReader = new Scanner(myObj);
+//			while (fReader.hasNextLine()) {
+//				String data = fReader.nextLine();
+//				System.out.println(" - " + data);
+//			}
+//			fReader.close();
+//			/*
+//			 * Let's write the file
+//			 * First value specify the file that is going to be written
+//			 * Second value specify that I want to leave the info that already contains
+//			 */
+//			FileWriter fWritter = new FileWriter(myObj, true);
+//			BufferedWriter myWriter = new BufferedWriter(fWritter);
+//			myWriter.write(bot1.getName());
+//			myWriter.newLine();
+//			myWriter.write(bot2.getName());
+//			myWriter.newLine();
+//			myWriter.close();
+//			System.out.println("\nInformation has been successfully written to the file.");
+//		} catch (IOException e) {
+//			System.out.println("\nFile couldn't be written!");
+//			e.printStackTrace();
+//		}
 	}
 }

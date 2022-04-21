@@ -8,6 +8,7 @@ public abstract class Player {
 	protected int score;
 	protected ArrayList<String> piece;
 	public int symbolPiece;
+	public boolean turn;
 
 	public int getSymbolPiece() {
 		return symbolPiece;
@@ -46,5 +47,9 @@ public abstract class Player {
 	public void setPiece(ArrayList<String> piece) {
 		this.piece = piece;
 	}
+
+	public boolean getTurn() { return turn; }
+
+	public void setTurn(boolean turn) { this.turn=turn; }
 
 }
