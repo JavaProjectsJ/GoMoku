@@ -9,7 +9,7 @@ public class Board {
 	public static final String RESET = "\u001B[0m";
 	public static final String YELLOW = "\u001B[33m";
 
-	private int[][] size = { {} };
+	private int[][] boardPiecePosition = { {} };
 
 	private int tableSize;
 
@@ -28,26 +28,26 @@ public class Board {
 
 	public Board(int tableSize) {
 		this.tableSize = tableSize;
-		this.size = new int[tableSize][tableSize];
-		for (int i = 0; i < size.length; i++) {
-			for (int j = 0; j < size.length; j++) {
-				this.size[i][j] = 0;
+		this.boardPiecePosition = new int[tableSize][tableSize];
+		for (int i = 0; i < boardPiecePosition.length; i++) {
+			for (int j = 0; j < boardPiecePosition.length; j++) {
+				this.boardPiecePosition[i][j] = 0;
 			}
 		}
 	}
 
 	public void insertPiece(int x, int y, int playerPiece) {
-		this.size[x][y] = playerPiece;
+		this.boardPiecePosition[x][y] = playerPiece;
 	}
 
 	public int getPiece(int x, int y) {
-		return this.size[x][y];
+		return this.boardPiecePosition[x][y];
 	}
 
 	public void showBoardInformation() {
-		for (int i = 0; i < size.length; i++) {
-			for (int j = 0; j < size.length; j++) {
-				System.out.print(size[i][j]);
+		for (int i = 0; i < boardPiecePosition.length; i++) {
+			for (int j = 0; j < boardPiecePosition.length; j++) {
+				System.out.print(boardPiecePosition[i][j]);
 			}
 			System.out.println();
 		}
@@ -88,12 +88,12 @@ public class Board {
 	public void showBoard() {
 		printHeader(this.tableSize);
 
-		for (int i = 0; i < size.length; i++) {
+		for (int i = 0; i < boardPiecePosition.length; i++) {
 			System.out.printf(" " + nmb[i]);
-			for (int j = 0; j < size.length; j++) {
-				if (size[i][j] == 0) {
+			for (int j = 0; j < boardPiecePosition.length; j++) {
+				if (boardPiecePosition[i][j] == 0) {
 					System.out.printf(dot);
-				} else if (size[i][j] == 1) {
+				} else if (boardPiecePosition[i][j] == 1) {
 					System.out.print(YELLOW + " X" + RESET);
 				} else {
 					System.out.print(BLUE + " O" + RESET);

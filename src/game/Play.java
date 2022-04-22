@@ -99,20 +99,18 @@ public class Play {
 		while (game.status) {
 			clearConsole();
 			try {
+//				game.playerList.get(playerTurn)
 				System.out.println("Insert the coordinates " + game.playerList.get(playerTurn).getName());
 				position = coordinates();
-				possibleMove = validator.validatePosition(position, board);
+				validator.validatePosition(position, board);
 				board.insertPiece(position[0], position[1], game.playerList.get(playerTurn).getSymbolPiece());
+				game.status = (validator.validateWin(board)) ? false : true;
 				playerTurn = (playerTurn == 0) ? 1 : 0;
-				if (validator.validateWin(board)) {
-					game.status = false;
-				}
 			} catch (Exception e) {
 				keyboardGame.keyboard.reset();
 				System.out.println(e.getMessage());
 			}
 			board.showBoard();
-			// game.setStatus(false);
 		}
 		ascii.asciiArt(2);
 		showResult();
