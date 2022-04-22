@@ -2,7 +2,6 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Play {
@@ -18,7 +17,6 @@ public class Play {
 
 	public void menu() {
 		show();
-		int option = 0;
 		exit = false;
 
 		chooseBoard(keyboardGame.keyboard);
@@ -77,7 +75,6 @@ public class Play {
 		int[] position;
 		exit = false;
 		Board board = new Board(option);
-		final int randomPlayer = new Random().nextInt(2) + 1;
 		/* Create the players */
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
