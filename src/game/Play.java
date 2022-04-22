@@ -10,6 +10,7 @@ public class Play {
 	boolean possibleMove = false;
 	boolean exit = false;
 	boolean random = false;
+	boolean valid = false;
 	KeyboardGame keyboardGame = new KeyboardGame();
 
 	List<Player> playerList = new ArrayList<>();
@@ -67,8 +68,12 @@ public class Play {
 		// ESPERAR 3 SEG
 		// BORRAR PRESENTACION
 		// MOSTRAR OPCIONES
-		ascii.asciiArt(1);
-		rules();
+		if (!valid) {
+			ascii.asciiArt(1);
+			rules();
+		} else {
+			System.out.println();
+		}
 	}
 
 	public void newGame(int option) {
@@ -264,7 +269,7 @@ public class Play {
 
 	public void reset() {
 		System.out.println("Would you like to play again?");
-		boolean valid = keyboardGame.readChar('y');
+		valid = keyboardGame.readChar('y');
 		if (valid) {
 			menu();
 		}
