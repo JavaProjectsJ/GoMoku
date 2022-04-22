@@ -20,9 +20,8 @@ public class Play {
 		show();
 		int option = 0;
 		exit = false;
-		Scanner keyboard = new Scanner(System.in);
 
-		chooseBoard(keyboard);
+		chooseBoard(keyboardGame.keyboard);
 	}
 
 	private void chooseBoard(Scanner keyboard) {
@@ -77,13 +76,12 @@ public class Play {
 	public void newGame(int option) {
 		int[] position;
 		exit = false;
-		Scanner keyboard = new Scanner(System.in);
 		Board board = new Board(option);
 		final int randomPlayer = new Random().nextInt(2) + 1;
 		/* Create the players */
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
-		int playerOption = keyboard.nextInt();
+		int playerOption = keyboardGame.readInt();
 		Game game = new Game(playerOption);
 
 		/* Clear the console a bit */
@@ -108,7 +106,7 @@ public class Play {
 					game.status = false;
 				}
 			} catch (Exception e) {
-				keyboard.reset();
+				keyboardGame.keyboard.reset();
 				System.out.println(e.getMessage());
 			}
 			board.showBoard();

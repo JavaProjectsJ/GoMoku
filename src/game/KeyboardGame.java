@@ -13,4 +13,9 @@ public class KeyboardGame {
 		}
 		return false;
 	}
+
+	public int readInt() {
+		int i = keyboard.nextInt();
+		return i;
+	}
 }
