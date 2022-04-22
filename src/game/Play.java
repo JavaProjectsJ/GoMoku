@@ -270,6 +270,7 @@ public class Play {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	public int[] coordinates() {
 		Scanner keyboard = new Scanner(System.in);
 		String coordinates = keyboard.nextLine();
