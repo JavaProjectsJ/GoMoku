@@ -48,8 +48,12 @@ public abstract class Player {
 		this.piece = piece;
 	}
 
-	public boolean getTurn() { return turn; }
+	public boolean getTurn() {
+		return turn;
+	}
 
-	public void setTurn(boolean turn) { this.turn=turn; }
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
 
 }
