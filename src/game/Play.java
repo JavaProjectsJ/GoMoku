@@ -104,6 +104,9 @@ public class Play {
 				possibleMove = validator.validatePosition(position, board);
 				board.insertPiece(position[0], position[1], game.playerList.get(playerTurn).getSymbolPiece());
 				playerTurn = (playerTurn == 0) ? 1 : 0;
+				if (validator.validateWin(board)) {
+					game.status = false;
+				}
 			} catch (Exception e) {
 				keyboard.reset();
 				System.out.println(e.getMessage());
