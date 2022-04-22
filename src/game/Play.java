@@ -16,6 +16,8 @@ public class Play {
 	List<Player> playerList = new ArrayList<>();
 	AsciiArt ascii = new AsciiArt();
 
+	HallOfFame hof = new HallOfFame();
+
 	public void menu() {
 		show();
 		exit = false;
@@ -264,7 +266,7 @@ public class Play {
 		ascii.asciiArt(2);
 		showResult();
 		reset();
-		hallOfFame();
+		hof.hallOfFame(game);
 	}
 
 	public void reset() {
@@ -291,43 +293,5 @@ public class Play {
 	}
 
 	public void showResult() {
-	}
-
-	public void hallOfFame() {
-		// File myObj = new File("HOF.txt");
-		// try {
-		// if (!myObj.exists()) {
-		// System.out.println("File created: " + myObj.getName());
-		// myObj.createNewFile();
-		// }
-		//
-		// /*
-		// * Let's read the file
-		// */
-		// System.out.println("\nHOF formers:\n");
-		// Scanner fReader = new Scanner(myObj);
-		// while (fReader.hasNextLine()) {
-		// String data = fReader.nextLine();
-		// System.out.println(" - " + data);
-		// }
-		// fReader.close();
-		// /*
-		// * Let's write the file
-		// * First value specify the file that is going to be written
-		// * Second value specify that I want to leave the info that already contains
-		// */
-		// FileWriter fWritter = new FileWriter(myObj, true);
-		// BufferedWriter myWriter = new BufferedWriter(fWritter);
-		// myWriter.write(bot1.getName());
-		// myWriter.newLine();
-		// myWriter.write(bot2.getName());
-		// myWriter.newLine();
-		// myWriter.close();
-		// System.out.println("\nInformation has been successfully written to the
-		// file.");
-		// } catch (IOException e) {
-		// System.out.println("\nFile couldn't be written!");
-		// e.printStackTrace();
-		// }
 	}
 }
