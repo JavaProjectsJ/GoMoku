@@ -5,18 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Play {
+	AsciiArt ascii = new AsciiArt();
+	HallOfFame hof = new HallOfFame();
+	KeyboardGame keyboardGame = new KeyboardGame();
+	List<Player> playerList = new ArrayList<>();
+
 	boolean game = true;
 	boolean playerTurn = true;
 	boolean possibleMove = false;
 	boolean exit = false;
 	boolean random = false;
 	boolean valid = false;
-	KeyboardGame keyboardGame = new KeyboardGame();
-
-	List<Player> playerList = new ArrayList<>();
-	AsciiArt ascii = new AsciiArt();
-
-	HallOfFame hof = new HallOfFame();
 
 	public void menu() {
 		show();
@@ -79,9 +78,11 @@ public class Play {
 	}
 
 	public void newGame(int option) {
-		int[] position;
-		exit = false;
 		Board board = new Board(option);
+		Validator validator = new Validator();
+		int playerTurn = 0;
+		int[] position;
+
 		/* Create the players */
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
@@ -94,9 +95,6 @@ public class Play {
 		/* Create the board */
 		board.showBoard();
 
-		Validator validator = new Validator();
-
-		int playerTurn = 0;
 		/* Start the game */
 		while (game.status) {
 			clearConsole();
