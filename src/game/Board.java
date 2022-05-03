@@ -5,7 +5,7 @@ package game;
 
 public class Board {
 	public static final String BLUE = "\u001B[34m";
-	public static final String GREEN = "\u001B[32m";
+	public static final String GREEN = "\033[0;32m";
 	public static final String RESET = "\u001B[0m";
 	public static final String YELLOW = "\u001B[33m";
 
