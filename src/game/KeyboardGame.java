@@ -23,4 +23,9 @@ public class KeyboardGame {
 		reset();
 		return i;
 	}
+
+	public String readString() {
+		String s = keyboard.nextLine();
+		return s;
+	}
 }
