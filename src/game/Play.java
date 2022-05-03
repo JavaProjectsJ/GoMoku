@@ -211,8 +211,7 @@ public class Play {
 				playerTurn = (playerTurn == 0) ? 1 : 0;
 				position = playerList.get(playerTurn).returnCoordinates(board);
 			} catch (Exception e) {
-				keyboardGame.keyboard.reset();
-				// System.out.println(e.getMessage());
+				keyboardGame.reset();
 			}
 			board.showBoard();
 		}
