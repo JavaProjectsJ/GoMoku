@@ -227,4 +227,8 @@ public class Play {
 	public void showResult(int playerTurn) {
 		System.out.printf("Player %s, %s won!\n", playerTurn++, playerList.get(playerTurn).getName());
 	}
+
+	public boolean isPossibleToMove() {
+		return exit;
+	}
 }
