@@ -83,7 +83,7 @@ public class Play {
 		}
 	}
 
-	@SuppressWarnings({ "unused", "resource" })
+	@SuppressWarnings("resource")
 	public List<Player> players(int option) {
 		boolean exit = false;
 		boolean random = false;
@@ -104,21 +104,15 @@ public class Play {
 			case 1:
 				if (random) {
 					if (randomPiece == 1) {
-						// bot1 = new Bot(name, 1, true);
-						// bot2 = new Bot(name, 2, false);
 						player1 = new BotString(name, true);
 						player2 = new BotString(name, false);
 						playerList = Arrays.asList(player1, player2);
 					} else {
-						// bot2 = new Bot(name, 1, true);
-						// bot1 = new Bot(name, 2, false);
 						player2 = new BotString(name, true);
 						player1 = new BotString(name, false);
 						playerList = Arrays.asList(player2, player1);
 					}
 				} else {
-					// bot1 = new Bot(name, 1, true);
-					// bot2 = new Bot(name, 2, false);
 					player1 = new BotString(name, true);
 					player2 = new BotString(name, false);
 					playerList = Arrays.asList(player1, player2);
@@ -174,7 +168,6 @@ public class Play {
 				break;
 			}
 		} while (!exit);
-		keyboardGame.keyboard.reset();
 		return playerList;
 	}
 
@@ -195,9 +188,6 @@ public class Play {
 
 		/* Create the board */
 		board.showBoard();
-
-		/* Reset the keyboard */
-		keyboardGame.keyboard.reset();
 
 		/* Start the game */
 		while (status) {
