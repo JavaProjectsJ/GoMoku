@@ -25,15 +25,16 @@ public class Play {
 		show();
 		exit = false;
 
-		chooseBoard(keyboardGame.keyboard);
+		chooseBoard(keyboardGame);
 	}
 
-	private void chooseBoard(Scanner keyboard) {
+	private void chooseBoard(KeyboardGame keyboard) {
 		int option;
 		do {
-			System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board (15x15)\n"
-					+ "\t2.- Traditional board (19x19)\n" + "\t3.- Exit\n" + "Choose your option: ");
-			option = keyboard.nextInt();
+			System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board [15x15]\n"
+					+ "\t2.- Traditional board [19x19](Bot is not implemented)\n" + "\t3.- Exit\n"
+					+ "Choose your option: ");
+			option = keyboard.readInt();
 			System.out.println();
 			switch (option) {
 			case 1:
@@ -54,13 +55,13 @@ public class Play {
 				break;
 			}
 		} while (!exit);
-		keyboardGame.keyboard.reset();
 	}
 
 	public void rules() {
 		System.out.println("\033[38;5;177mImportant notice!\n"
-				+ "The winner will be the first player that align 5 pieces in a vertical,"
-				+ " horizontal or crosswise line,\nIf there are more than 5 pieces the player will also win\n\u001B[0m");
+				+ " - The winner will be the first player that align 5 pieces in a vertical,"
+				+ " horizontal or crosswise line,\nif there are more than 5 pieces the player will also win\n"
+				+ " - Coordinates have to be written like in chess, example: A,2! You have been advertised\n\u001B[0m");
 	}
 
 	public static void main(String[] args) {

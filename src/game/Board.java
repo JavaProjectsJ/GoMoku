@@ -49,7 +49,7 @@ public class Board {
 	}
 
 	public int getPiece(int x, int y) {
-		return this.boardPiecePosition[x][y];
+		return this.boardPiecePosition[y][x];
 	}
 
 	public void showBoardInformation() {
