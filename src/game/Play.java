@@ -205,8 +205,9 @@ public class Play {
 			}
 			board.showBoard();
 		}
+		showResult(playerTurn = (playerTurn == 0) ? 1 : 0);
+		System.out.println();
 		ascii.asciiArt(2);
-		showResult();
 		reset();
 		hof.hallOfFame(playerList);
 	}
@@ -223,6 +224,7 @@ public class Play {
 		System.out.println();
 	}
 
-	public void showResult() {
+	public void showResult(int playerTurn) {
+		System.out.printf("Player %s, %s won!\n", playerTurn++, playerList.get(playerTurn).getName());
 	}
 }
