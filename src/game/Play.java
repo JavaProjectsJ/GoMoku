@@ -196,10 +196,9 @@ public class Play {
 				System.out.println("Insert the coordinates " + playerList.get(playerTurn).getName());
 				position = playerList.get(playerTurn).returnCoordinates(board);
 				validator.validatePosition(position, board);
-				board.insertPiece(position[0], position[1], playerList.get(playerTurn).getPiece());
+				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece());
 				status = (validator.validateWin(board)) ? false : true;
 				playerTurn = (playerTurn == 0) ? 1 : 0;
-				position = playerList.get(playerTurn).returnCoordinates(board);
 			} catch (Exception e) {
 				keyboardGame.reset();
 			}
