@@ -132,4 +132,16 @@ public class Board {
 		}
 		printFooter(this.tableSize);
 	}
+
+	public boolean deadHeat() {
+		for (int i = 0; i < getTableSize(); i++) {
+			for (int j = 0; j < getTableSize(); j++) {
+				if (getPiece(i, j) == 0) {
+					return false;
+				}
+			}
+		}
+		System.out.println("\nNobody won, you have done a dead heat.");
+		return true;
+	}
 }

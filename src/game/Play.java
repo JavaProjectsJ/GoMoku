@@ -198,6 +198,7 @@ public class Play {
 				validator.validatePosition(position, board);
 				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
 				status = (validator.validateWin(board)) ? false : true;
+				// status = (board.deadHeat()) ? false : true;
 				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
 				playerTurn = (playerTurn == 0) ? 1 : 0;
 			} catch (Exception e) {
@@ -226,7 +227,7 @@ public class Play {
 	}
 
 	public void showResult(int playerTurn) {
-		System.out.printf("Player %s, %s won!\n", playerTurn + 1, playerList.get(playerTurn).getName());
+		System.out.printf("\nPlayer %s, %s won!\n", playerTurn + 1, playerList.get(playerTurn).getName());
 	}
 
 	public boolean isPossibleToMove() {
