@@ -10,6 +10,7 @@ public class Board {
 	public static final String YELLOW = "\u001B[33m";
 
 	private int[][] boardPiecePosition = { {} };
+	private int[] boardLastPiecePosition = {};
 
 	private int tableSize;
 
@@ -27,6 +28,7 @@ public class Board {
 	public Board(int tableSize) {
 		this.tableSize = tableSize;
 		this.boardPiecePosition = new int[tableSize][tableSize];
+		this.boardLastPiecePosition = new int[] { -1, -1, -1 };
 		for (int i = 0; i < boardPiecePosition.length; i++) {
 			for (int j = 0; j < boardPiecePosition.length; j++) {
 				this.boardPiecePosition[i][j] = 0;
@@ -38,14 +40,20 @@ public class Board {
 		super();
 	}
 
-	public void insertPiece(int x, int y, Pieces pieces) {
+	public void insertPiece(int x, int y, Pieces pieces, boolean lastPosition) {
 		int n = 0;
 		if (pieces == Pieces.CROSS) {
 			n = 1;
 		} else {
 			n = 2;
 		}
-		this.boardPiecePosition[x][y] = n;
+		if (lastPosition) {
+			this.boardLastPiecePosition[0] = x;
+			this.boardLastPiecePosition[1] = y;
+			this.boardLastPiecePosition[2] = n;
+		} else {
+			this.boardPiecePosition[x][y] = n;
+		}
 	}
 
 	public int getPiece(int x, int y) {
@@ -94,17 +102,26 @@ public class Board {
 	}
 
 	public void showBoard() {
+		boolean printFinal = false;
 		printHeader(this.tableSize);
 
 		for (int i = 0; i < boardPiecePosition.length; i++) {
 			System.out.printf(" " + nmb[i]);
 			for (int j = 0; j < boardPiecePosition.length; j++) {
-				if (boardPiecePosition[i][j] == 0) {
-					System.out.print(" " + Pieces.BLANK.getPieces());
-				} else if (boardPiecePosition[i][j] == 1) {
-					System.out.print(YELLOW + " " + Pieces.CROSS.getPieces() + RESET);
+				if (boardLastPiecePosition[1] == j && boardLastPiecePosition[0] == i) {
+					if (boardLastPiecePosition[2] == 1) {
+						System.out.print(GREEN + " " + Pieces.CROSS.getPieces() + RESET);
+					} else {
+						System.out.print(GREEN + " " + Pieces.CIRCLE.getPieces() + RESET);
+					}
 				} else {
-					System.out.print(BLUE + " " + Pieces.CIRCLE.getPieces() + RESET);
+					if (boardPiecePosition[i][j] == 0) {
+						System.out.print(" " + Pieces.BLANK.getPieces());
+					} else if (boardPiecePosition[i][j] == 1) {
+						System.out.print(YELLOW + " " + Pieces.CROSS.getPieces() + RESET);
+					} else if (boardPiecePosition[i][j] == 2) {
+						System.out.print(BLUE + " " + Pieces.CIRCLE.getPieces() + RESET);
+					}
 				}
 
 				if (j == tableSize - 1) {

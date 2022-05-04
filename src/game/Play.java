@@ -196,15 +196,17 @@ public class Play {
 				System.out.println("Insert the coordinates " + playerList.get(playerTurn).getName());
 				position = playerList.get(playerTurn).returnCoordinates(board);
 				validator.validatePosition(position, board);
-				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece());
+				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
 				status = (validator.validateWin(board)) ? false : true;
+				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
 				playerTurn = (playerTurn == 0) ? 1 : 0;
 			} catch (Exception e) {
 				keyboardGame.reset();
 			}
 			board.showBoard();
 		}
-		showResult(playerTurn = (playerTurn == 0) ? 1 : 0);
+		playerTurn = (playerTurn == 0) ? 1 : 0;
+		showResult(playerTurn);
 		System.out.println();
 		ascii.asciiArt(2);
 		reset();
@@ -224,7 +226,7 @@ public class Play {
 	}
 
 	public void showResult(int playerTurn) {
-		System.out.printf("Player %s, %s won!\n", playerTurn++, playerList.get(playerTurn).getName());
+		System.out.printf("Player %s, %s won!\n", playerTurn + 1, playerList.get(playerTurn).getName());
 	}
 
 	public boolean isPossibleToMove() {
