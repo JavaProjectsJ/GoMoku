@@ -39,9 +39,9 @@ public class HallOfFame {
 			myWriter.write(playerList.get(1).getName());
 			myWriter.newLine();
 			myWriter.close();
-			System.out.println("\nInformation has been successfully written to the file.");
+			System.out.println("\nInformation has been successfully written to the file.\n");
 		} catch (IOException e) {
-			System.out.println("\nFile couldn't be written!");
+			System.out.println("\nFile couldn't be written!\n");
 			e.printStackTrace();
 		}
 	}
