@@ -19,69 +19,7 @@ public class Play {
 	boolean exit = false;
 	boolean random = false;
 	boolean valid = false;
-
-	/* Pasar los menus a una clase main.... */
-	public void menu() {
-		show();
-		exit = false;
-
-		chooseBoard(keyboardGame);
-	}
-
-	private void chooseBoard(KeyboardGame keyboard) {
-		int option;
-		do {
-			System.out.printf("Choose your Go Moku Board:\n" + "\t1.- New board [15x15]\n"
-					+ "\t2.- Traditional board [19x19](Bot is not implemented)\n" + "\t3.- Exit\n"
-					+ "Choose your option: ");
-			option = keyboard.readInt();
-			System.out.println();
-			switch (option) {
-			case 1:
-				newGame(15);
-				exit = true;
-				break;
-			case 2:
-				newGame(19);
-				exit = true;
-				break;
-			case 3:
-				System.out.println("Stopping the game execution");
-				exit = true;
-				break;
-			default:
-				System.out.println("Invalid option\nTry it again!\n");
-				exit = false;
-				break;
-			}
-		} while (!exit);
-	}
-
-	public void rules() {
-		System.out.println("\033[38;5;177mImportant notice!\n"
-				+ " - The winner will be the first player that align 5 pieces in a vertical,"
-				+ " horizontal or crosswise line,\nif there are more than 5 pieces the player will also win\n"
-				+ " - Coordinates have to be written like in chess, example: A,2! You have been advertised\n\u001B[0m");
-	}
-
-	public static void main(String[] args) {
-		new Play().menu();
-	}
-
-	public void show() {
-		// PRESENTAR EL JUEGO Y OPCIONES //
-		// GOMUKU BY JOSE
-		// MOSTRAR PRESENTACION
-		// ESPERAR 3 SEG
-		// BORRAR PRESENTACION
-		// MOSTRAR OPCIONES
-		if (!valid) {
-			ascii.asciiArt(1);
-			rules();
-		} else {
-			System.out.println();
-		}
-	}
+	boolean deadHeat = false;
 
 	@SuppressWarnings("resource")
 	public List<Player> players(int option) {
@@ -216,16 +154,8 @@ public class Play {
 		showResult(playerTurn);
 		System.out.println();
 		ascii.asciiArt(2);
-		reset();
 		hof.hallOfFame(playerList);
-	}
-
-	public void reset() {
-		System.out.println("Would you like to play again?");
-		valid = keyboardGame.readChar('y');
-		if (valid) {
-			menu();
-		}
+		new Main().reset();
 	}
 
 	public final void clearConsole() {
