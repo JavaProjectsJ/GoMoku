@@ -141,7 +141,6 @@ public class Board {
 				}
 			}
 		}
-		System.out.println("\nNobody won, you have done a dead heat.");
 		return true;
 	}
 }

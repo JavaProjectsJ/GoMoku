@@ -197,8 +197,14 @@ public class Play {
 				position = playerList.get(playerTurn).returnCoordinates(board);
 				validator.validatePosition(position, board);
 				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
-				status = (validator.validateWin(board)) ? false : true;
-				// status = (board.deadHeat()) ? false : true;
+				if (validator.validateWin(board) || board.deadHeat()) {
+					status = false;
+					if (!status && board.deadHeat()) {
+						deadHeat = true;
+					}
+				} else {
+					status = true;
+				}
 				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
 				playerTurn = (playerTurn == 0) ? 1 : 0;
 			} catch (Exception e) {
@@ -227,7 +233,14 @@ public class Play {
 	}
 
 	public void showResult(int playerTurn) {
-		System.out.printf("\nPlayer %s, %s won!\n", playerTurn + 1, playerList.get(playerTurn).getName());
+		if (deadHeat) {
+			System.out.println("\nNobody won, you have done a dead heat.");
+			deadHeat = false;
+		} else {
+			System.out.printf("\nPlayer %s, %s won vs Player %s, %s!\n", playerTurn + 1,
+					playerList.get(playerTurn).getName(), (((playerTurn == 0) ? 1 : 0) + 1),
+					playerList.get((playerTurn == 0) ? 1 : 0).getName());
+		}
 	}
 
 	public boolean isPossibleToMove() {
