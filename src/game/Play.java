@@ -130,24 +130,21 @@ public class Play {
 		/* Start the game */
 		while (status) {
 			clearConsole();
-			try {
+			do {
 				System.out.println("Insert the coordinates " + playerList.get(playerTurn).getName());
 				position = playerList.get(playerTurn).returnCoordinates(board);
-				validator.validatePosition(position, board);
-				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
-				if (validator.validateWin(board) || board.deadHeat()) {
-					status = false;
-					if (!status && board.deadHeat()) {
-						deadHeat = true;
-					}
-				} else {
-					status = true;
+			} while (!validator.validatePosition(position, board));
+			board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
+			if (validator.validateWin(board) || board.deadHeat()) {
+				status = false;
+				if (!status && board.deadHeat()) {
+					deadHeat = true;
 				}
-				board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
-				playerTurn = (playerTurn == 0) ? 1 : 0;
-			} catch (Exception e) {
-				keyboardGame.reset();
+			} else {
+				status = true;
 			}
+			board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
+			playerTurn = (playerTurn == 0) ? 1 : 0;
 			board.showBoard();
 		}
 		playerTurn = (playerTurn == 0) ? 1 : 0;

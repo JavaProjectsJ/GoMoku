@@ -2,15 +2,18 @@ package game;
 
 public class Validator {
 
-	public void validatePosition(int[] position, Board board) throws Exception {
+	public boolean validatePosition(int[] position, Board board) {
 		/* Validate if position is in the board size */
-		if (position[0] < 0 || position[0] > 14 || position[1] < 0 || position[1] > 14) {
+		if (position[0] < 0 || position[0] > board.getTableSize() - 1 || position[1] < 0
+				|| position[1] > board.getTableSize() - 1) {
 			System.out.println("The position is not in the board size");
-			throw new Exception("Try again");
+			return false;
 			/* Validate if the position is empty */
 		} else if (board.getPiece(position[0], position[1]) != 0) {
 			System.out.println("The position is not empty");
-			throw new Exception("Try again");
+			return false;
+		} else {
+			return true;
 		}
 	}
 
