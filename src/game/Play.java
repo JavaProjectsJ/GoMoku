@@ -134,7 +134,7 @@ public class Play {
 				System.out.println("Insert the coordinates " + playerList.get(playerTurn).getName());
 				position = playerList.get(playerTurn).returnCoordinates(board);
 			} while (!validator.validatePosition(position, board));
-			board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
+			board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece());
 			if (validator.validateWin(board) || board.deadHeat()) {
 				status = false;
 				if (!status && board.deadHeat()) {
@@ -143,7 +143,7 @@ public class Play {
 			} else {
 				status = true;
 			}
-			board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece(), !status);
+			board.insertPiece(position[1], position[0], playerList.get(playerTurn).getPiece());
 			playerTurn = (playerTurn == 0) ? 1 : 0;
 			board.showBoard();
 		}
