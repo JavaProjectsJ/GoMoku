@@ -9,7 +9,7 @@ public class Play {
 	AsciiArt ascii = new AsciiArt();
 	HallOfFame hof = new HallOfFame();
 	KeyboardGame keyboardGame = new KeyboardGame();
-	List<Player> playerList = new ArrayList<>();
+	static List<Player> playerList = new ArrayList<>();
 	Player player1;
 	Player player2;
 	boolean status = true;
@@ -19,7 +19,7 @@ public class Play {
 	boolean exit = false;
 	boolean random = false;
 	boolean valid = false;
-	boolean deadHeat = false;
+	static boolean deadHeat = false;
 
 	@SuppressWarnings("resource")
 	public List<Player> players(int option) {
@@ -151,7 +151,7 @@ public class Play {
 		showResult(playerTurn);
 		System.out.println();
 		ascii.asciiArt(2);
-		hof.hallOfFame(playerList);
+		hof.hallOfFame(playerList, playerTurn);
 		new Main().reset();
 	}
 
@@ -159,15 +159,30 @@ public class Play {
 		System.out.println();
 	}
 
-	public void showResult(int playerTurn) {
+	public static String showResult(int playerTurn) {
+		String str;
 		if (deadHeat) {
-			System.out.println("\nNobody won, you have done a dead heat.");
-			deadHeat = false;
+			System.out.println();
+			str = String.format("Player %s, %s played vs Player %s, %s but nobody won, you have done a dead heat.",
+					playerTurn + 1, playerList.get(playerTurn).getName(), (((playerTurn == 0) ? 1 : 0) + 1),
+					playerList.get((playerTurn == 0) ? 1 : 0).getName());
+			System.out.println();
+			/*
+			 * deadHeat have to be set as false but idk where set it as false
+			 * as there is a problem which is that if i set it here as false when
+			 * HallOfFame access to this function it just will just enter in the else
+			 * so prolly best idea is leaving it as true if enters here for making it work
+			 * right.
+			 */
 		} else {
-			System.out.printf("\nPlayer %s, %s won vs Player %s, %s!\n", playerTurn + 1,
+			System.out.println();
+			str = String.format("Player %s, %s won vs Player %s, %s!", playerTurn + 1,
 					playerList.get(playerTurn).getName(), (((playerTurn == 0) ? 1 : 0) + 1),
 					playerList.get((playerTurn == 0) ? 1 : 0).getName());
+			System.out.println();
 		}
+		System.out.println(str);
+		return str;
 	}
 
 	public boolean isPossibleToMove() {
