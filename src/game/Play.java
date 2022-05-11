@@ -184,8 +184,4 @@ public class Play {
 		System.out.println(str);
 		return str;
 	}
-
-	public boolean isPossibleToMove() {
-		return exit;
-	}
 }
