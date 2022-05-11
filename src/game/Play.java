@@ -19,7 +19,7 @@ public class Play {
 	boolean exit = false;
 	boolean random = false;
 	boolean valid = false;
-	static boolean deadHeat = false;
+	boolean deadHeat = false;
 
 	@SuppressWarnings("resource")
 	public List<Player> players(int option) {
@@ -148,10 +148,10 @@ public class Play {
 			board.showBoard();
 		}
 		playerTurn = (playerTurn == 0) ? 1 : 0;
-		showResult(playerTurn);
+		showResult(playerTurn, deadHeat);
 		System.out.println();
 		ascii.asciiArt(2);
-		hof.hallOfFame(playerList, playerTurn);
+		hof.hallOfFame(playerList, playerTurn, deadHeat);
 		new Main().reset();
 	}
 
@@ -159,7 +159,7 @@ public class Play {
 		System.out.println();
 	}
 
-	public static String showResult(int playerTurn) {
+	public static String showResult(int playerTurn, boolean deadHeat) {
 		String str;
 		if (deadHeat) {
 			System.out.println();

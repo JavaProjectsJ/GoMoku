@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class HallOfFame {
 
-	public void hallOfFame(List<Player> playerList, int playerTurn) {
+	public void hallOfFame(List<Player> playerList, int playerTurn, boolean deadHeat) {
 		File myObj = new File("HOF.txt");
 		try {
 			if (!myObj.exists()) {
@@ -34,10 +34,12 @@ public class HallOfFame {
 			 */
 			FileWriter fWritter = new FileWriter(myObj, true);
 			BufferedWriter myWriter = new BufferedWriter(fWritter);
-			myWriter.write(Play.showResult(playerTurn));
-			myWriter.newLine();
-			myWriter.close();
-			System.out.println("\nInformation has been successfully written to the file.\n");
+			if (!deadHeat) {
+				myWriter.write(Play.showResult(playerTurn, deadHeat));
+				myWriter.newLine();
+				myWriter.close();
+				System.out.println("\nInformation has been successfully written to the file.\n");
+			}
 		} catch (IOException e) {
 			System.out.println("\nFile couldn't be written!\n");
 			e.printStackTrace();
