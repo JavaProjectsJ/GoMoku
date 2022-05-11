@@ -57,15 +57,6 @@ public class Board {
 		return this.boardPiecePosition[y][x];
 	}
 
-	public void showBoardInformation() {
-		for (int i = 0; i < boardPiecePosition.length; i++) {
-			for (int j = 0; j < boardPiecePosition.length; j++) {
-				System.out.print(boardPiecePosition[i][j]);
-			}
-			System.out.println();
-		}
-	}
-
 	public void printABC(int size) {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 				"T", "U", "V", "W", "X", "Y", "Z" };
