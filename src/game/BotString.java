@@ -10,10 +10,6 @@ public class BotString extends Player {
 		super(Database.nmb(), turn);
 	}
 
-	public BotString() {
-		super();
-	}
-
 	private String piezes() {
 		String piezes = Pieces.CROSS.getPieces();
 		if (piece.equals(Pieces.CROSS)) {
