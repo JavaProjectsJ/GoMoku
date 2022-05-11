@@ -3,10 +3,8 @@ package game;
 public abstract class Player {
 
 	protected String name;
-	protected int score;
 	protected Pieces piece;
 	protected boolean turn;
-	public int symbolPiece;
 	private static int n = 0;
 
 	public Player(String name, boolean turn) {
@@ -33,10 +31,6 @@ public abstract class Player {
 
 	public abstract int[] returnCoordinates(Board board);
 
-	public int setN() {
-		return n;
-	}
-
 	public Player() {
 	}
 
@@ -49,24 +43,7 @@ public abstract class Player {
 		this.name = name;
 	}
 
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-
 	public Pieces getPiece() {
 		return piece;
 	}
-
-	public boolean getTurn() {
-		return turn;
-	}
-
-	public void setTurn(boolean turn) {
-		this.turn = turn;
-	}
-
 }
