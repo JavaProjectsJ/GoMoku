@@ -7,8 +7,23 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class for reading and writting to files.
+ * 
+ * @author jmpfbmx
+ *
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 public class HallOfFame {
 
+	/**
+	 * Method for reading and writting to a file whose where the guys that win.
+	 * 
+	 * @param playerList (ArrayList of the players)
+	 * @param playerTurn (Needed for writting to the file who won if was player 1/2)
+	 */
 	public void hallOfFame(List<Player> playerList, int playerTurn, boolean deadHeat) {
 		File myObj = new File("HOF.txt");
 		try {

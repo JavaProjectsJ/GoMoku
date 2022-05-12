@@ -1,6 +1,20 @@
 package game;
 
+/**
+ * Class used for my cusotm ASCII Art.
+ * 
+ * @author jmpfbmx
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 public class AsciiArt {
+	/**
+	 * It just print an ASCII Art.
+	 * 
+	 * @param option (Is used for setting the ASCII Art that will be printed)
+	 */
 	public void asciiArt(int option) {
 		switch (option) {
 		case 1:

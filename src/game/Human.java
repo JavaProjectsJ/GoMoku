@@ -3,13 +3,36 @@ package game;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class used for creating the humans
+ * 
+ * @author jmpfbmx
+ * @version 1.0
+ * @since 1.0
+ * @see Player
+ */
 public class Human extends Player {
+	/**
+	 * Create they keyboard
+	 */
 	KeyboardGame keyboard = new KeyboardGame();
 
+	/**
+	 * Constructor of the Human
+	 * 
+	 * @param name of the player
+	 * @param turn of the player
+	 */
 	public Human(String name, boolean turn) {
 		super(name, turn);
 	}
 
+	/**
+	 * Method that return the coordinates of the piece that will be inserted
+	 * 
+	 * @param board
+	 * @see Board
+	 */
 	@Override
 	public int[] returnCoordinates(Board board) {
 		String coordinates = keyboard.readString();

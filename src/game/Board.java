@@ -3,28 +3,77 @@
  */
 package game;
 
+/**
+ * Class used for making the board, setting/inserting/printing pieces.
+ * 
+ * @author jmpfbmx
+ * 
+ * @version 1.0
+ * 
+ * @since 1.0
+ */
 public class Board {
+	/**
+	 * Is used for setting the color of the piece.
+	 */
 	public static final String BLUE = "\u001B[34m";
+	/**
+	 * Is used for setting the color of the piece.
+	 */
 	public static final String GREEN = "\033[0;32m";
+	/**
+	 * Is used for resetting the color of the piece.
+	 */
 	public static final String RESET = "\u001B[0m";
+	/**
+	 * Is used for setting the color of the piece.
+	 */
 	public static final String YELLOW = "\u001B[33m";
 
+	/**
+	 * Is used for setting the position where pieces are going to be set.
+	 */
 	private int[][] boardPiecePosition = { {} };
+
+	/**
+	 * It saves the last piece position.
+	 */
 	private int[] boardLastPiecePosition = new int[2];
 
+	/**
+	 * Is used for setting the tableSize.
+	 */
 	private int tableSize;
 
+	/**
+	 * Is used for printing the numbers.
+	 */
+	private String[] nmb = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
+			"16", "17", "18", "19" };
+
+	/**
+	 * Get the table size
+	 * 
+	 * @return an int saying which is the size of the table
+	 */
 	public int getTableSize() {
 		return tableSize;
 	}
 
+	/**
+	 * Set the table size
+	 * 
+	 * @param tableSize (It receives the tableSize that will be set)
+	 */
 	public void setTableSize(int tableSize) {
 		this.tableSize = tableSize;
 	}
 
-	private String[] nmb = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
-			"16", "17", "18", "19" };
-
+	/**
+	 * Constructor used for creating the board.
+	 * 
+	 * @param tableSize (It receives the tableSize that will be set)
+	 */
 	public Board(int tableSize) {
 		this.tableSize = tableSize;
 		this.boardPiecePosition = new int[tableSize][tableSize];
@@ -36,10 +85,20 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Empty constructor
+	 */
 	public Board() {
 		super();
 	}
 
+	/**
+	 * In this function i insert the pieces and also set the colour of them
+	 * 
+	 * @param x      (vertically)
+	 * @param y      (horizontally)
+	 * @param pieces (Assign the piece to the player)
+	 */
 	public void insertPiece(int x, int y, Pieces pieces) {
 		int n = 0;
 		if (pieces == Pieces.CROSS) {
@@ -53,10 +112,22 @@ public class Board {
 		this.boardPiecePosition[x][y] = n;
 	}
 
+	/**
+	 * Get the piece position
+	 * 
+	 * @param x (vertically)
+	 * @param y (horizontally)
+	 * @return the piece position
+	 */
 	public int getPiece(int x, int y) {
 		return this.boardPiecePosition[y][x];
 	}
 
+	/**
+	 * This function has the letters that will be printed in the board
+	 * 
+	 * @param size (Depending on the size 15 or 19 letters will be printed)
+	 */
 	public void printABC(int size) {
 		String[] abc = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
 				"T", "U", "V", "W", "X", "Y", "Z" };
@@ -68,6 +139,11 @@ public class Board {
 		System.out.printf("    ");
 	}
 
+	/**
+	 * Print the header of my board
+	 * 
+	 * @param size (Depending on the size 15 or 19 letters will be printed)
+	 */
 	private void printHeader(int size) {
 		printABC(size);
 		System.out.println();
@@ -79,6 +155,11 @@ public class Board {
 		System.out.println();
 	}
 
+	/**
+	 * Print the footer of my board
+	 * 
+	 * @param size (Depending on the size 15 or 19 letters will be printed)
+	 */
 	public void printFooter(int size) {
 		System.out.printf("   ");
 		for (int i = 0; i < size; i++) {
@@ -89,6 +170,9 @@ public class Board {
 		System.out.println();
 	}
 
+	/**
+	 * Print the board
+	 */
 	public void showBoard() {
 		printHeader(this.tableSize);
 
@@ -120,6 +204,11 @@ public class Board {
 		printFooter(this.tableSize);
 	}
 
+	/**
+	 * This method just return a boolean for saying if was a dead heat.
+	 * 
+	 * @return true if the user has done a dead heat.
+	 */
 	public boolean deadHeat() {
 		for (int i = 0; i < getTableSize(); i++) {
 			for (int j = 0; j < getTableSize(); j++) {

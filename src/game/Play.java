@@ -5,22 +5,64 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class that create the board, players and start the game
+ * 
+ * @author jmpfbmx
+ * @version 1.0
+ * @since 1.0
+ */
 public class Play {
+	/**
+	 * Used for printing my custom art
+	 * 
+	 * @see AsciiArt
+	 */
 	AsciiArt ascii = new AsciiArt();
+	/**
+	 * Used for writing to files
+	 * 
+	 * @see HallOfFame
+	 */
 	HallOfFame hof = new HallOfFame();
+	/**
+	 * Create the keyboard
+	 * 
+	 * @see KeyboardGame
+	 */
 	KeyboardGame keyboardGame = new KeyboardGame();
+	/**
+	 * Store the players that are playing
+	 */
 	static List<Player> playerList = new ArrayList<>();
+	/**
+	 * Create the 1st player
+	 */
 	Player player1;
+	/**
+	 * Create the 2nd player
+	 */
 	Player player2;
+	/**
+	 * Used for exiting the game once that someone has won or if a dead heat was
+	 * done.
+	 */
 	boolean status = true;
-	boolean game = true;
-	boolean playerTurn = true;
-	boolean possibleMove = false;
-	boolean exit = false;
-	boolean random = false;
-	boolean valid = false;
+	/**
+	 * Is set as true when in a game a dead heat was done.
+	 */
 	boolean deadHeat = false;
 
+	/**
+	 * Generate the players that are going to play and if they will start randomly,
+	 * they will also be stored in a list.
+	 * 
+	 * @param option
+	 * @see Player
+	 * @see BotString
+	 * @see Human
+	 * @return the player list
+	 */
 	@SuppressWarnings("resource")
 	public List<Player> players(int option) {
 		boolean exit = false;
@@ -36,6 +78,7 @@ public class Play {
 		} else {
 			random = false;
 		}
+		keyboardGame.reset();
 		do {
 			System.out.println();
 			switch (option) {
@@ -109,25 +152,27 @@ public class Play {
 		return playerList;
 	}
 
+	/**
+	 * It creates the board, clear the console a bit, create the board and also
+	 * start the game
+	 * 
+	 * @param option
+	 */
 	public void newGame(int option) {
 		Board board = new Board(option);
 		Validator validator = new Validator();
 		int playerTurn = 0;
 		int[] position;
 
-		/* Create the players */
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
 		int playerOption = keyboardGame.readInt();
 		players(playerOption);
 
-		/* Clear the console a bit */
 		clearConsole();
 
-		/* Create the board */
 		board.showBoard();
 
-		/* Start the game */
 		while (status) {
 			clearConsole();
 			do {
@@ -155,10 +200,20 @@ public class Play {
 		new Main().reset();
 	}
 
+	/**
+	 * Insert a blank line
+	 */
 	public final void clearConsole() {
 		System.out.println();
 	}
 
+	/**
+	 * Show who played and who win.
+	 * 
+	 * @param playerTurn
+	 * @param deadHeat
+	 * @return a String saying if someone won or if was a dead heat.
+	 */
 	public static String showResult(int playerTurn, boolean deadHeat) {
 		String str;
 		if (deadHeat) {
@@ -167,13 +222,6 @@ public class Play {
 					playerTurn + 1, playerList.get(playerTurn).getName(), (((playerTurn == 0) ? 1 : 0) + 1),
 					playerList.get((playerTurn == 0) ? 1 : 0).getName());
 			System.out.println();
-			/*
-			 * deadHeat have to be set as false but idk where set it as false
-			 * as there is a problem which is that if i set it here as false when
-			 * HallOfFame access to this function it just will just enter in the else
-			 * so prolly best idea is leaving it as true if enters here for making it work
-			 * right.
-			 */
 		} else {
 			System.out.println();
 			str = String.format("Player %s, %s won vs Player %s, %s!", playerTurn + 1,
