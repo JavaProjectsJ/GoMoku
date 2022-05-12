@@ -42,7 +42,7 @@ public class Human extends Player {
 		for (int i = 0; i < 26; i++) {
 			alphabet.put(String.valueOf((char) (i + 65)), i);
 		}
-		positions[0] = alphabet.get(coordinates_split[0]);
+		positions[0] = alphabet.get(coordinates_split[0].toUpperCase());
 		positions[1] = Integer.parseInt(coordinates_split[1]) - 1;
 		return positions;
 	}
