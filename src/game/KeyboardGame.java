@@ -1,5 +1,6 @@
 package game;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -55,7 +56,16 @@ public class KeyboardGame {
 	 * @return an int
 	 */
 	public int readInt() {
-		int i = keyboard.nextInt();
+		int i = 0;
+		boolean exit = false;
+		do {
+			try {
+				i = keyboard.nextInt();
+				exit = true;
+			} catch (InputMismatchException e) {
+				reset();
+			}
+		} while (!exit);
 		reset();
 		return i;
 	}
