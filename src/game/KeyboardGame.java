@@ -20,7 +20,7 @@ public class KeyboardGame {
 	 * Method for resetting the keyboard
 	 */
 	public void reset() {
-		keyboard.reset();
+		keyboard.nextLine();
 	}
 
 	/**
