@@ -73,11 +73,7 @@ public class Play {
 		String player2_name = "";
 		int randomPiece = (int) (Math.random() * (2 - 1 + 1) + 1);
 		System.out.println("\nWould you like to randomize who will start?");
-		if (keyboardGame.readChar('y')) {
-			random = true;
-		} else {
-			random = false;
-		}
+		random = keyboardGame.readChar('y', 'n');
 		keyboardGame.reset();
 		do {
 			System.out.println();

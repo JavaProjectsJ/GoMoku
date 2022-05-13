@@ -27,13 +27,24 @@ public class KeyboardGame {
 	 * returns a true
 	 * 
 	 * @param affirmativeValue
+	 * @param negativeValue
 	 * @return true when the char is the affirmative value
 	 */
-	public boolean readChar(char affirmativeValue) {
-		char c = keyboard.next().charAt(0);
-		if (affirmativeValue == c) {
-			return true;
-		}
+	public boolean readChar(char affirmativeValue, char negativeValue) {
+		char c;
+		boolean exit = false;
+		do {
+			System.out.printf("Valid values are %s - %s\n", affirmativeValue, negativeValue);
+			c = keyboard.next().charAt(0);
+			if (c == affirmativeValue || c == negativeValue) {
+				exit = true;
+				if (c == affirmativeValue) {
+					return true;
+				} else if (c == negativeValue) {
+					return false;
+				}
+			}
+		} while (!exit);
 		reset();
 		return false;
 	}

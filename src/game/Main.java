@@ -110,7 +110,7 @@ public class Main {
 	 */
 	public void reset() {
 		System.out.println("Would you like to play again?");
-		valid = keyboardGame.readChar('y');
+		valid = keyboardGame.readChar('y', 'n');
 		if (valid) {
 			menu(false);
 		}
