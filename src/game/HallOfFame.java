@@ -23,6 +23,7 @@ public class HallOfFame {
 	 * 
 	 * @param playerList (ArrayList of the players)
 	 * @param playerTurn (Needed for writting to the file who won if was player 1/2)
+	 * @param deadHeat   (Store if a dead heat have been done or not)
 	 */
 	public void hallOfFame(List<Player> playerList, int playerTurn, boolean deadHeat) {
 		File myObj = new File("HOF.txt");
