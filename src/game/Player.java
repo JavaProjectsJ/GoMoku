@@ -23,6 +23,8 @@ public abstract class Player {
 		this.symbolPiece = symbolPiece;
 	}
 
+	public Player(){}
+
 	// GETTERS AND SETTERS
 	public String getName() {
 		return name;

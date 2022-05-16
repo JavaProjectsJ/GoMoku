@@ -36,6 +36,10 @@ public class Board {
 		}
 	}
 
+	public Board() {
+		super();
+	}
+
 	public void insertPiece(int x, int y, int playerPiece) {
 		this.boardPiecePosition[x][y] = playerPiece;
 	}
@@ -107,4 +111,4 @@ public class Board {
 		}
 		printFooter(this.tableSize);
 	}
-}
+

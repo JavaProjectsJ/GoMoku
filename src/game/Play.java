@@ -99,9 +99,13 @@ public class Play {
 		while (game.status) {
 			clearConsole();
 			try {
-//				game.playerList.get(playerTurn)
-				System.out.println("Insert the coordinates " + game.playerList.get(playerTurn).getName());
-				position = coordinates();
+				if(game.playerList.get(playerTurn).getClass().getName().equals("game.Bot")){
+					System.out.println("Soy un bot");
+					position = new Bot().bestMove(board, game.playerList.get(playerTurn));
+				} else {
+					System.out.println("Insert the coordinates " + game.playerList.get(playerTurn).getName());
+					position = coordinates();
+				}
 				validator.validatePosition(position, board);
 				board.insertPiece(position[0], position[1], game.playerList.get(playerTurn).getSymbolPiece());
 				game.status = (validator.validateWin(board)) ? false : true;
