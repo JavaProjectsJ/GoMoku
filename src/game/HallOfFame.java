@@ -4,14 +4,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class HallOfFame {
-	List<Player> playerList = new ArrayList<>();
 
-	public void hallOfFame(Game game) {
+	public void hallOfFame(List<Player> playerList) {
 		File myObj = new File("HOF.txt");
 		try {
 			if (!myObj.exists()) {
@@ -36,9 +34,9 @@ public class HallOfFame {
 			 */
 			FileWriter fWritter = new FileWriter(myObj, true);
 			BufferedWriter myWriter = new BufferedWriter(fWritter);
-			myWriter.write(game.playerList.get(0).getName());
+			myWriter.write(playerList.get(0).getName());
 			myWriter.newLine();
-			myWriter.write(game.playerList.get(1).getName());
+			myWriter.write(playerList.get(1).getName());
 			myWriter.newLine();
 			myWriter.close();
 			System.out.println("\nInformation has been successfully written to the file.");

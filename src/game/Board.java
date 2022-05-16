@@ -24,8 +24,6 @@ public class Board {
 	private String[] nmb = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
 			"16", "17", "18", "19" };
 
-	private String dot = " ·";
-
 	public Board(int tableSize) {
 		this.tableSize = tableSize;
 		this.boardPiecePosition = new int[tableSize][tableSize];
@@ -40,8 +38,14 @@ public class Board {
 		super();
 	}
 
-	public void insertPiece(int x, int y, int playerPiece) {
-		this.boardPiecePosition[x][y] = playerPiece;
+	public void insertPiece(int x, int y, Pieces pieces) {
+		int n = 0;
+		if (pieces == Pieces.CROSS) {
+			n = 1;
+		} else {
+			n = 2;
+		}
+		this.boardPiecePosition[x][y] = n;
 	}
 
 	public int getPiece(int x, int y) {
@@ -96,11 +100,11 @@ public class Board {
 			System.out.printf(" " + nmb[i]);
 			for (int j = 0; j < boardPiecePosition.length; j++) {
 				if (boardPiecePosition[i][j] == 0) {
-					System.out.printf(dot);
+					System.out.print(" " + Pieces.BLANK.getPieces());
 				} else if (boardPiecePosition[i][j] == 1) {
-					System.out.print(YELLOW + " X" + RESET);
+					System.out.print(YELLOW + " " + Pieces.CROSS.getPieces() + RESET);
 				} else {
-					System.out.print(BLUE + " O" + RESET);
+					System.out.print(BLUE + " " + Pieces.CIRCLE.getPieces() + RESET);
 				}
 
 				if (j == tableSize - 1) {
@@ -111,4 +115,4 @@ public class Board {
 		}
 		printFooter(this.tableSize);
 	}
-
+}

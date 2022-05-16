@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,9 @@ public class Play {
 	HallOfFame hof = new HallOfFame();
 	KeyboardGame keyboardGame = new KeyboardGame();
 	List<Player> playerList = new ArrayList<>();
-
+	Player player1;
+	Player player2;
+	boolean status = true;
 	boolean game = true;
 	boolean playerTurn = true;
 	boolean possibleMove = false;
@@ -17,6 +20,7 @@ public class Play {
 	boolean random = false;
 	boolean valid = false;
 
+	/* Pasar los menus a una clase main.... */
 	public void menu() {
 		show();
 		exit = false;
@@ -50,6 +54,7 @@ public class Play {
 				break;
 			}
 		} while (!exit);
+		keyboardGame.keyboard.reset();
 	}
 
 	public void rules() {
@@ -77,6 +82,101 @@ public class Play {
 		}
 	}
 
+	@SuppressWarnings({ "unused", "resource" })
+	public List<Player> players(int option) {
+		boolean exit = false;
+		boolean random = false;
+		Scanner keyboard = new Scanner(System.in);
+		String name = "";
+		String player1_name = "";
+		String player2_name = "";
+		int randomPiece = (int) (Math.random() * (2 - 1 + 1) + 1);
+		System.out.println("\nWould you like to randomize who will start?");
+		if (keyboardGame.readChar('y')) {
+			random = true;
+		} else {
+			random = false;
+		}
+		do {
+			System.out.println();
+			switch (option) {
+			case 1:
+				if (random) {
+					if (randomPiece == 1) {
+						// bot1 = new Bot(name, 1, true);
+						// bot2 = new Bot(name, 2, false);
+						player1 = new BotString(name, true);
+						player2 = new BotString(name, false);
+						playerList = Arrays.asList(player1, player2);
+					} else {
+						// bot2 = new Bot(name, 1, true);
+						// bot1 = new Bot(name, 2, false);
+						player2 = new BotString(name, true);
+						player1 = new BotString(name, false);
+						playerList = Arrays.asList(player2, player1);
+					}
+				} else {
+					// bot1 = new Bot(name, 1, true);
+					// bot2 = new Bot(name, 2, false);
+					player1 = new BotString(name, true);
+					player2 = new BotString(name, false);
+					playerList = Arrays.asList(player1, player2);
+				}
+				exit = true;
+				break;
+			case 2:
+				System.out.println("Which is your name player 1?");
+				player1_name = keyboard.nextLine();
+				if (random) {
+					if (randomPiece == 1) {
+						player1 = new Human(player1_name, true);
+						player2 = new BotString(name, false);
+						playerList = Arrays.asList(player1, player2);
+					} else {
+						player1 = new BotString(name, true);
+						player2 = new Human(player1_name, false);
+						playerList = Arrays.asList(player2, player1);
+					}
+				} else {
+					player1 = new Human(player1_name, true);
+					player2 = new BotString(name, false);
+					playerList = Arrays.asList(player1, player2);
+				}
+
+				exit = true;
+				break;
+			case 3:
+				System.out.println("Which is your name player 1?");
+				player1_name = keyboard.nextLine();
+				System.out.println("\nWhich is your name player 2?");
+				player2_name = keyboard.nextLine();
+				if (random) {
+					if (randomPiece == 1) {
+						player1 = new Human(player1_name, true);
+						player2 = new Human(player2_name, false);
+						playerList = Arrays.asList(player1, player2);
+					} else {
+						player1 = new Human(player2_name, true);
+						player2 = new Human(player1_name, false);
+						playerList = Arrays.asList(player2, player1);
+					}
+				} else {
+					player1 = new Human(player1_name, true);
+					player2 = new Human(player2_name, false);
+					playerList = Arrays.asList(player1, player2);
+				}
+				exit = true;
+				break;
+			default:
+				System.out.println("Invalid option\nTry it again!\n");
+				exit = false;
+				break;
+			}
+		} while (!exit);
+		keyboardGame.keyboard.reset();
+		return playerList;
+	}
+
 	public void newGame(int option) {
 		Board board = new Board(option);
 		Validator validator = new Validator();
@@ -87,7 +187,7 @@ public class Play {
 		System.out.printf("How would you like to play?\n" + "\t1.- Bot vs Bot\n" + "\t2.- Human vs Bot\n"
 				+ "\t3.- Human vs Human\n" + "Choose your option: ");
 		int playerOption = keyboardGame.readInt();
-		Game game = new Game(playerOption);
+		players(playerOption);
 
 		/* Clear the console a bit */
 		clearConsole();
@@ -95,31 +195,30 @@ public class Play {
 		/* Create the board */
 		board.showBoard();
 
+		/* Reset the keyboard */
+		keyboardGame.keyboard.reset();
+
 		/* Start the game */
-		while (game.status) {
+		while (status) {
 			clearConsole();
 			try {
-				if(game.playerList.get(playerTurn).getClass().getName().equals("game.Bot")){
-					System.out.println("Soy un bot");
-					position = new Bot().bestMove(board, game.playerList.get(playerTurn));
-				} else {
-					System.out.println("Insert the coordinates " + game.playerList.get(playerTurn).getName());
-					position = coordinates();
-				}
+				System.out.println("Insert the coordinates " + playerList.get(playerTurn).getName());
+				position = playerList.get(playerTurn).returnCoordinates(board);
 				validator.validatePosition(position, board);
-				board.insertPiece(position[0], position[1], game.playerList.get(playerTurn).getSymbolPiece());
-				game.status = (validator.validateWin(board)) ? false : true;
+				board.insertPiece(position[0], position[1], playerList.get(playerTurn).getPiece());
+				status = (validator.validateWin(board)) ? false : true;
 				playerTurn = (playerTurn == 0) ? 1 : 0;
+				position = playerList.get(playerTurn).returnCoordinates(board);
 			} catch (Exception e) {
 				keyboardGame.keyboard.reset();
-				System.out.println(e.getMessage());
+				// System.out.println(e.getMessage());
 			}
 			board.showBoard();
 		}
 		ascii.asciiArt(2);
 		showResult();
 		reset();
-		hof.hallOfFame(game);
+		hof.hallOfFame(playerList);
 	}
 
 	public void reset() {
@@ -128,17 +227,6 @@ public class Play {
 		if (valid) {
 			menu();
 		}
-	}
-
-	@SuppressWarnings("resource")
-	public int[] coordinates() {
-		Scanner keyboard = new Scanner(System.in);
-		String coordinates = keyboard.nextLine();
-		String[] coordinates_split = coordinates.split(",");
-		int[] positions = new int[2];
-		positions[0] = Integer.parseInt(coordinates_split[0]) - 1;
-		positions[1] = Integer.parseInt(coordinates_split[1]) - 1;
-		return positions;
 	}
 
 	public final void clearConsole() {

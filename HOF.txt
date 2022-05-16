@@ -1,3 +1,9 @@
 Lassen
 Guru
 Summit
+Piz Daint
+Perimutter
+AlphaZero
+Sunway Taihu
+a
+b
