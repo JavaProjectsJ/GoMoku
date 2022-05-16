@@ -3,7 +3,6 @@ package game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Class that create the board, players and start the game
@@ -63,11 +62,9 @@ public class Play {
 	 * @see Human
 	 * @return the player list
 	 */
-	@SuppressWarnings("resource")
 	public List<Player> players(int option) {
 		boolean exit = false;
 		boolean random = false;
-		Scanner keyboard = new Scanner(System.in);
 		String name = "";
 		String player1_name = "";
 		String player2_name = "";
@@ -98,7 +95,7 @@ public class Play {
 				break;
 			case 2:
 				System.out.println("Which is your name player 1?");
-				player1_name = keyboard.nextLine();
+				player1_name = keyboardGame.readString();
 				if (random) {
 					if (randomPiece == 1) {
 						player1 = new Human(player1_name, true);
@@ -119,9 +116,9 @@ public class Play {
 				break;
 			case 3:
 				System.out.println("Which is your name player 1?");
-				player1_name = keyboard.nextLine();
+				player1_name = keyboardGame.readString();
 				System.out.println("\nWhich is your name player 2?");
-				player2_name = keyboard.nextLine();
+				player2_name = keyboardGame.readString();
 				if (random) {
 					if (randomPiece == 1) {
 						player1 = new Human(player1_name, true);
