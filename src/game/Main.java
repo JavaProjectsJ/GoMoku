@@ -11,12 +11,12 @@ package game;
  */
 public class Main {
 	/**
-	 * Is used for exiting from the menu.
+	 * It is used for exiting from the menu.
 	 */
 	boolean exit = false;
 
 	/**
-	 * Is used for reseting the game.
+	 * It iss used for reseting the game.
 	 */
 	boolean valid = false;
 
@@ -26,7 +26,7 @@ public class Main {
 	static boolean firstGame = true;
 
 	/**
-	 * It just create the keyboard.
+	 * It just creates the keyboard.
 	 */
 	KeyboardGame keyboardGame = new KeyboardGame();
 
@@ -67,7 +67,7 @@ public class Main {
 	}
 
 	/**
-	 * It just call shows and chooseBoard method.
+	 * It just calls shows and chooseBoard method.
 	 * 
 	 * @param firstGame (Is needed for don't showing once again the rules and the
 	 *                  ascii art)
@@ -80,7 +80,7 @@ public class Main {
 	}
 
 	/**
-	 * It just contain the rules of the games.
+	 * It just contains the rules of the games.
 	 */
 	public void rules() {
 		System.out.println("\033[38;5;177mImportant notice!\n"
@@ -90,7 +90,7 @@ public class Main {
 	}
 
 	/**
-	 * It just show for the first time you execute the game the ascii art and the
+	 * It just shows for the first time you execute the game the ascii art and the
 	 * rules of it.
 	 * 
 	 * @param firstGame (Is needed for don't showing once again the rules and the
@@ -106,7 +106,7 @@ public class Main {
 	}
 
 	/**
-	 * It just reset the game
+	 * It just resets the game
 	 */
 	public void reset() {
 		System.out.println("Would you like to play again?");
@@ -117,7 +117,7 @@ public class Main {
 	}
 
 	/**
-	 * It just call the menu sending a true to it.
+	 * It just calls the menu sending a true to it.
 	 * 
 	 * @param args (Is used when you want to run the game using custom java
 	 *             arguments)

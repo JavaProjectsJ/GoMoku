@@ -17,14 +17,14 @@ public class KeyboardGame {
 	Scanner keyboard = new Scanner(System.in);
 
 	/**
-	 * Method for resetting the keyboard
+	 * Method for cleaning the keyboard
 	 */
 	public void reset() {
 		keyboard.nextLine();
 	}
 
 	/**
-	 * Method that read a char and if it is the affirmative value
+	 * Method that reads a char and if it is the affirmative value
 	 * returns a true
 	 * 
 	 * @param affirmativeValue
@@ -51,7 +51,7 @@ public class KeyboardGame {
 	}
 
 	/**
-	 * Method that read an int
+	 * Method that reads an int
 	 * 
 	 * @return an int
 	 */
@@ -71,7 +71,7 @@ public class KeyboardGame {
 	}
 
 	/**
-	 * Method that read a String
+	 * Method that reads a String
 	 * 
 	 * @return a String
 	 */

@@ -93,7 +93,8 @@ public class Board {
 	}
 
 	/**
-	 * In this function i insert the pieces and also set the colour of them
+	 * In this function the pieces are being inserted and also the colour is being
+	 * set.
 	 * 
 	 * @param x      (vertically)
 	 * @param y      (horizontally)
@@ -140,7 +141,7 @@ public class Board {
 	}
 
 	/**
-	 * Print the header of my board
+	 * Print the header of the board
 	 * 
 	 * @param size (Depending on the size 15 or 19 letters will be printed)
 	 */
@@ -156,7 +157,7 @@ public class Board {
 	}
 
 	/**
-	 * Print the footer of my board
+	 * Print the footer of the board
 	 * 
 	 * @param size (Depending on the size 15 or 19 letters will be printed)
 	 */
@@ -205,7 +206,7 @@ public class Board {
 	}
 
 	/**
-	 * This method just return a boolean for saying if was a dead heat.
+	 * This method just returns a boolean for saying if was a dead heat.
 	 * 
 	 * @return true if the user has done a dead heat.
 	 */

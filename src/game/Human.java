@@ -28,7 +28,7 @@ public class Human extends Player {
 	}
 
 	/**
-	 * Method that return the coordinates of the piece that will be inserted
+	 * Method that returns the coordinates of the piece that will be inserted
 	 * 
 	 * @param board
 	 * @see Board

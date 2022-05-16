@@ -19,10 +19,11 @@ import java.util.Scanner;
 public class HallOfFame {
 
 	/**
-	 * Method for reading and writting to a file whose where the guys that win.
+	 * Method for reading and writing to a file whose where the guys that win.
 	 * 
 	 * @param playerList (ArrayList of the players)
-	 * @param playerTurn (Needed for writting to the file who won if was player 1/2)
+	 * @param playerTurn (Needed for writting to the file who won if he/she was a
+	 *                   player 1/2)
 	 * @param deadHeat   (Store if a dead heat have been done or not)
 	 */
 	public void hallOfFame(List<Player> playerList, int playerTurn, boolean deadHeat) {

@@ -10,9 +10,8 @@ package game;
 public class Validator {
 
 	/**
-	 * Method for validate the position, it checks if the position is out of the
-	 * board and
-	 * if it is empty
+	 * Method for validating the position, it checks if the position is out of the
+	 * board and if it is empty
 	 * 
 	 * @param position
 	 * @param board
@@ -35,7 +34,7 @@ public class Validator {
 	}
 
 	/**
-	 * Method that call to every validations
+	 * Method that calls to every validations
 	 * 
 	 * @param board
 	 * @see Board
@@ -58,7 +57,7 @@ public class Validator {
 	}
 
 	/**
-	 * Validate if there are 5 pieces horizontally
+	 * It validates if there are 5 pieces horizontally
 	 * 
 	 * @param board
 	 * @see Board
@@ -81,7 +80,7 @@ public class Validator {
 	}
 
 	/**
-	 * Validate if there are 5 pieces vertically
+	 * It validates if there are 5 pieces vertically
 	 * 
 	 * @param board
 	 * @see Board
@@ -104,7 +103,7 @@ public class Validator {
 	}
 
 	/**
-	 * Validate if there are 5 pieces diagonally
+	 * It validates if there are 5 pieces diagonally
 	 * 
 	 * @param board
 	 * @see Board
@@ -128,7 +127,7 @@ public class Validator {
 	}
 
 	/**
-	 * Validate if there are 5 pieces in the reversed diagonal
+	 * it validates if there are 5 pieces in the reversed diagonal
 	 * 
 	 * @param board
 	 * @see Board

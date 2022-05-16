@@ -46,7 +46,7 @@ public abstract class Player {
 	}
 
 	/**
-	 * Set piece for the player
+	 * It sets piece for the player
 	 * 
 	 * @param symbolPiece
 	 */
@@ -67,7 +67,7 @@ public abstract class Player {
 	}
 
 	/**
-	 * Abstract method that return the coordinates
+	 * Abstract method that returns the coordinates
 	 * 
 	 * @param board
 	 * @return the coordinates

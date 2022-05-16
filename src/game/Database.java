@@ -30,7 +30,7 @@ public enum Database {
 	}
 
 	/**
-	 * Method for get a random name
+	 * Method for getting a random name
 	 * 
 	 * @return a name
 	 */

@@ -13,47 +13,49 @@ import java.util.List;
  */
 public class Play {
 	/**
-	 * Used for printing my custom art
+	 * It is used for printing my custom art
 	 * 
 	 * @see AsciiArt
 	 */
 	AsciiArt ascii = new AsciiArt();
 	/**
-	 * Used for writing to files
+	 * It is used for writing to files
 	 * 
 	 * @see HallOfFame
 	 */
 	HallOfFame hof = new HallOfFame();
 	/**
-	 * Create the keyboard
+	 * It creates the keyboard
 	 * 
 	 * @see KeyboardGame
 	 */
 	KeyboardGame keyboardGame = new KeyboardGame();
 	/**
-	 * Store the players that are playing
+	 * It stores the players that are playing
 	 */
 	static List<Player> playerList = new ArrayList<>();
 	/**
-	 * Create the 1st player
+	 * It creates the 1st player
 	 */
 	Player player1;
 	/**
-	 * Create the 2nd player
+	 * It creates the 2nd player
 	 */
 	Player player2;
 	/**
-	 * Used for exiting the game once that someone has won or if a dead heat was
+	 * It is used for exiting the game once that someone has won or if a dead heat
+	 * was
 	 * done.
 	 */
 	boolean status = true;
 	/**
-	 * Is set as true when in a game a dead heat was done.
+	 * It is set as true when in a game a dead heat was done.
 	 */
 	boolean deadHeat = false;
 
 	/**
-	 * Generate the players that are going to play and if they will start randomly,
+	 * It generates the players that are going to play and if they will start
+	 * randomly,
 	 * they will also be stored in a list.
 	 * 
 	 * @param option
@@ -146,8 +148,7 @@ public class Play {
 	}
 
 	/**
-	 * It creates the board, clear the console a bit, create the board and also
-	 * start the game
+	 * It creates the board, clears the console a bit and also starts the game
 	 * 
 	 * @param option
 	 */
@@ -194,14 +195,14 @@ public class Play {
 	}
 
 	/**
-	 * Insert a blank line
+	 * It inserts a blank line
 	 */
 	public final void clearConsole() {
 		System.out.println();
 	}
 
 	/**
-	 * Show who played and who win.
+	 * It shows who played and who win.
 	 * 
 	 * @param playerTurn
 	 * @param deadHeat
