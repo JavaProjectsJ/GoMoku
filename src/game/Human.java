@@ -36,7 +36,7 @@ public class Human extends Player {
 	@Override
 	public int[] returnCoordinates(Board board) {
 		String coordinates = keyboard.readString();
-		String[] coordinates_split = coordinates.split(",");
+		String[] coordinates_split;
 		Map<String, Integer> alphabet = new HashMap<>();
 		int[] positions = new int[2];
 		while (!coordinates.matches("[A-Za-z]{1},\\d{1,2}")) {
@@ -44,6 +44,7 @@ public class Human extends Player {
 					"Please insert again the coordinates, remember that the format should be something like: A,2");
 			coordinates = keyboard.readString();
 		}
+		coordinates_split = coordinates.split(",");
 		for (int i = 0; i < 26; i++) {
 			alphabet.put(String.valueOf((char) (i + 65)), i);
 		}
