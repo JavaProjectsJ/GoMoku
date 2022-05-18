@@ -39,7 +39,7 @@ public class Human extends Player {
 		String[] coordinates_split = coordinates.split(",");
 		Map<String, Integer> alphabet = new HashMap<>();
 		int[] positions = new int[2];
-		if (!coordinates.matches("[A-Za-z]{1},\\d{1,2}")) {
+		while (!coordinates.matches("[A-Za-z]{1},\\d{1,2}")) {
 			System.out.println(
 					"Please insert again the coordinates, remember that the format should be something like: A,2");
 			coordinates = keyboard.readString();
